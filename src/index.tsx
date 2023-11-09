@@ -1,5 +1,9 @@
-import App from 'app/App';
+import { App } from 'app/App';
 import { createRoot } from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom';
+import 'app/styles/index.scss';
+import 'shared/config/i18n/i18n';
+import ThemeProvider from 'app/providers/ThemeProvider/ui/ThemeProvider';
 
 const container = document.getElementById('root');
 
@@ -10,4 +14,10 @@ if (!container) {
 }
 
 const root = createRoot(container);
-root.render(<App />);
+root.render(
+    <BrowserRouter>
+        <ThemeProvider>
+            <App />
+        </ThemeProvider>
+    </BrowserRouter>,
+);
