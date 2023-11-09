@@ -23,11 +23,11 @@ export function buildPlugins({
             __API__: JSON.stringify(apiUrl),
             __PROJECT__: JSON.stringify(project),
         }),
-        // new CopyPlugin({
-        //     patterns: [
-        //         { from: paths.locales, to: paths.buildLocales },
-        //     ],
-        // }),
+        new CopyPlugin({
+            patterns: [
+                { from: paths.locales, to: paths.buildLocales },
+            ],
+        }),
     ];
 
     if (isDev) {

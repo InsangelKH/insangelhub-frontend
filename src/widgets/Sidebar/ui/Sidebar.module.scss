@@ -1,0 +1,56 @@
+.Sidebar {
+    width: 20%;
+    position: relative;
+    background: var(--inverted-bg-color);
+    border-radius: 20px;
+    margin-left: 20px;
+    height: calc(100vh - 85px);
+    transition: width 0.4s ease; 
+
+    &.collapsed {
+        width: 5%;
+    }
+}
+
+.foldWrapper {
+    position: absolute;
+    right: 0;
+    margin-top: 20px;
+    margin-right: 25px;
+}
+
+.links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 100px;
+    align-items: center;
+    
+    &.collapsed {
+        margin-top: 80px;
+    }
+}
+
+.appLink {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.icon {
+    width: 30px;
+    height: 30px;
+    fill: var(--inverted-primary-color);
+    stroke: var(--inverted-primary-color);
+    stroke-width: 2;
+}
+
+p {
+    &.collapsed {
+        display: none;
+    }
+
+    &.collapsing {
+        display: none;
+    }
+}

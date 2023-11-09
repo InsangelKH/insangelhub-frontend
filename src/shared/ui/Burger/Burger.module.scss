@@ -1,0 +1,15 @@
+.Burger {
+    background-color: var(--inverted-secondary-color);
+    border-radius: 4px;
+    width: 35px;
+    height: 35px;
+}
+
+.fold {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    cursor: pointer;
+    fill: var(--secondary-color);
+    transform: translate(8%, 8%);
+}
