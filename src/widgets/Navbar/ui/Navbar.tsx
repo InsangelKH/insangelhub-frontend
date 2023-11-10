@@ -18,6 +18,7 @@ export const Navbar = memo((props: NavbarProps) => {
 
     return (
         <nav className={classNames(cls.Navbar, {}, [className])}>
+            <h2 className={cls.name}>{t('InsangelHub')}</h2>
             <ThemeSwitcher />
             <LangSwithcer />
         </nav>

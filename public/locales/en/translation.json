@@ -1,5 +1,6 @@
 {
   "main": "Main page",
   "resume": "Resume",
-  "language": "EN"
+  "language": "EN",
+  "not-found": "Page was not found"
 }
