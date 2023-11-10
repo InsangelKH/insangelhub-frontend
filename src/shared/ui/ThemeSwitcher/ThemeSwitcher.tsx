@@ -1,8 +1,8 @@
 import { Theme, useTheme } from 'app/providers/ThemeProvider';
 import { memo, useCallback } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
-import MoonIcon from '../../assets/icons-moon.svg';
-import SunIcon from '../../assets/icons-sun.svg';
+import MoonIcon from '../../assets/icons/icons-moon.svg';
+import SunIcon from '../../assets/icons/icons-sun.svg';
 import { Icon } from '../Icon/Icon';
 import cls from './ThemeSwitcher.module.scss';
 

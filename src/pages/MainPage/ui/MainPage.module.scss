@@ -1,0 +1,27 @@
+.MainPage {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.title {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.reason {
+    text-align: center;
+}
+
+.list {
+    text-align: center;
+}
+
+li {
+    margin-top: 5px;
+}
+
+.basedOn {
+    margin-top: 30px;
+    text-align: center;
+}

@@ -5,8 +5,8 @@ import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
 import { Icon } from 'shared/ui/Icon/Icon';
 import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 import cls from './SidebarLinks.module.scss';
-import MainPageIcon from '../../../shared/assets/icon-main-page.svg';
-import ResumeIcon from '../../../shared/assets/icon-resume.svg';
+import MainPageIcon from '../../../shared/assets/icons/icon-main-page.svg';
+import ResumeIcon from '../../../shared/assets/icons/icon-resume.svg';
 
 interface SidebarLinksProps {
     className?: string;

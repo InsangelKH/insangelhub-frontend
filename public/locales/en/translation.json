@@ -2,5 +2,14 @@
   "main": "Main page",
   "resume": "Resume",
   "language": "EN",
-  "not-found": "Page was not found"
+  "not-found": "Page was not found",
+  "error-has-occured": "An error has occured",
+  "reload-page": "Reload the page",
+  "welcome to insangelhub": "Welcome to InsangelHub!",
+  "the reason of this app": "This web application is made to introduce visitors to my development skills.",
+  "you will find here": "You will find here:",
+  "my resume": "My resume",
+  "my articles": "My very important opinion articles ",
+  "your articles": "Creation of your own articles",
+  "app based on": "This web application is based on React/Redux for a frontend part and NestJS (NodeJS) for a backend part."
 }

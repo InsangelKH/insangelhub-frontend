@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { memo } from 'react';
 import cls from './Burger.module.scss';
 import { Icon } from '../Icon/Icon';
-import BurgerIcon from '../../assets/icon-fold.svg';
+import BurgerIcon from '../../assets/icons/icon-fold.svg';
 
 interface BurgerProps {
     className?: string;

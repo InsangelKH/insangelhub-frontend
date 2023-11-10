@@ -2,5 +2,14 @@
   "main": "Главная страница",
   "resume": "Резюме",
   "language": "РУ",
-  "not-found": "Страница не найдена"
+  "not-found": "Страница не найдена",
+  "error-has-occured": "Произошла ошибка",
+  "reload-page": "Перезагрузите страницу",
+  "welcome to insangelhub": "Добро пожаловать на InsangelHub!",
+  "the reason of this app": "Это web-приложение сделано с целью познакомить посетителей с мои навыком разработки.",
+  "you will find here": "Здесь вы найдете:",
+  "my resume": "Мое резюме",
+  "my articles": "Мои очень важные авторские статьи",
+  "your articles": "Создание ваших собственных статей",
+  "app based on": "Это web приложение основано на React/Redux для frontend части и на NestJS (NodeJS) для backend части."
 }
