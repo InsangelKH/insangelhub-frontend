@@ -1,6 +1,5 @@
+import { ReactNode } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
-import { useTranslation } from 'react-i18next';
-import { ReactNode, memo } from 'react';
 import cls from './Page.module.scss';
 
 interface PageProps {
@@ -13,8 +12,6 @@ export const Page = (props: PageProps) => {
         className,
         children,
     } = props;
-
-    const { t } = useTranslation();
 
     return (
         <main className={classNames(cls.Page, {}, [className])}>

@@ -21,7 +21,7 @@ export const ImageSlider = memo((props: ImageSliderProps) => {
 
             const startAutoScroll = () => {
                 scrollInterval = setInterval(() => {
-                    if (slider.scrollTop >= slider.scrollHeight - slider.clientHeight) {
+                    if (slider.scrollTop >= slider.scrollHeight - slider.clientHeight - 5) {
                         // Reached the bottom, change direction to scroll up
                         scrollDirection = -1;
                     } else if (slider.scrollTop <= 0) {
@@ -30,7 +30,7 @@ export const ImageSlider = memo((props: ImageSliderProps) => {
                     }
 
                     slider.scrollBy(0, scrollDirection);
-                }, 1);
+                }, 10);
             };
 
             startAutoScroll();

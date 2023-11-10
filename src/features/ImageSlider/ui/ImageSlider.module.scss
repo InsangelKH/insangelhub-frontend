@@ -1,8 +1,9 @@
 .ImageSlider {
     display: flex;
     flex-direction: column;
-    width: 80%;
-    height: 390px;
+    width: 60%;
+    min-height: 400px;
+    max-height: 400px;
     overflow-y: hidden;
     align-self: center;
 
@@ -11,12 +12,24 @@
 
     img {
         width: 100%;
-        height: 390px;
+        min-height: 360px;
+    }
+
+    @media screen and (max-width: 1270px) {
+        width: 60%;
+        min-height: 200px;
+        max-height: 200px;
+
+        img {
+            width: 100%;
+            min-height: 200px;
+        }
     }
 
     @media screen and (max-width: 768px) {
         width: 100%;
-        height: 200px;
+        min-height: 200px;
+        max-height: 200px;
 
         img {
             width: 100%;

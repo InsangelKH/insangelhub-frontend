@@ -13,3 +13,24 @@
 .name {
     color: var(--inverted-primary-color);
 }
+
+.nameMobile {
+    color: var(--inverted-primary-color);
+}
+
+@media screen and (min-width: 1270px) {
+    .nameMobile {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 748px) {
+    .Navbar {
+        gap: 15px;
+    }
+
+    .name {
+        display: none;
+    }
+}
+
