@@ -29,7 +29,7 @@ export const Navbar = memo((props: NavbarProps) => {
                 theme={AppLinkTheme.SECONDARY}
                 className={cls.login}
             >
-                <h2>{t('login')}</h2>
+                <h2>{t('login_nav')}</h2>
             </AppLink>
         </nav>
     );

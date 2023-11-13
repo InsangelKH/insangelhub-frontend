@@ -1,0 +1,27 @@
+.LoginForm {
+    display: flex;
+    gap: 15px;
+    flex-direction: column;
+    width: 60%;
+}
+
+.loginButton {
+    margin-top: 10px;
+    width: 20%;
+    margin-left: auto;
+}
+
+@media screen and (max-width: 748px) {
+
+    h3 {
+        font-size: 17px;
+    }
+
+    .loginWrapper {
+        width: 90%;
+    }
+
+    .loginButton {
+        width: 40%;
+    }
+}
