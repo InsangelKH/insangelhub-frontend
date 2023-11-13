@@ -1,0 +1,21 @@
+.Button {
+    padding: 7px;
+    border-radius: 20px;
+    cursor: pointer;
+
+    &:hover {
+        opacity: 0.7;
+    }
+}
+
+.background {
+    background: var(---bg-color);
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+}
+
+.backgroundInverted {
+    background: var(---inverted-bg-color);
+    color: var(--inverted-primary-color);
+    border: 2px solid var(--inverted-primary-color);
+}

@@ -7,6 +7,7 @@ import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 import cls from './SidebarLinks.module.scss';
 import MainPageIcon from '../../../shared/assets/icons/icon-main-page.svg';
 import ResumeIcon from '../../../shared/assets/icons/icon-resume.svg';
+import ProfileIcon from '../../../shared/assets/icons/icon-profile.svg';
 
 interface SidebarLinksProps {
     className?: string;
@@ -51,6 +52,18 @@ export const SidebarLinks = memo((props: SidebarLinksProps) => {
                     className={classNames('', mods, [])}
                 >
                     {t('resume')}
+                </p>
+            </AppLink>
+            <AppLink
+                to={RoutePath.resume}
+                theme={AppLinkTheme.SECONDARY}
+                className={cls.appLink}
+            >
+                <Icon Svg={ProfileIcon} className={cls.iconProfile} />
+                <p
+                    className={classNames('', mods, [])}
+                >
+                    {t('profile')}
                 </p>
             </AppLink>
         </div>

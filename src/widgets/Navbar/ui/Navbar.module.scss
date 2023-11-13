@@ -16,9 +16,14 @@
 
 .nameMobile {
     color: var(--inverted-primary-color);
+    display: none;
 }
 
-@media screen and (min-width: 1270px) {
+.login {
+    margin-left: auto;
+}
+
+@media screen and (min-width: 748px) and (max-width: 1270px) {
     .nameMobile {
         display: none;
     }
@@ -27,6 +32,10 @@
 @media screen and (max-width: 748px) {
     .Navbar {
         gap: 15px;
+    }
+
+    .nameMobile {
+        display: block;
     }
 
     .name {

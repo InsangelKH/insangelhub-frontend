@@ -11,5 +11,9 @@
   "my resume": "My resume",
   "my articles": "My very important opinion articles ",
   "your articles": "Creation of your own articles",
-  "app based on": "This web application is based on React/Redux for a frontend part and NestJS (NodeJS) for a backend part."
+  "app based on": "This web application is based on React/Redux for a frontend part and NestJS (NodeJS) for a backend part.",
+  "profile": "Profile",
+  "login": "Login",
+  "type login": "Enter your email:",
+  "type password": "Enter your password:"
 }
