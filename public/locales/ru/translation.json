@@ -13,5 +13,6 @@
   "your articles": "Создание ваших собственных статей",
   "app based on": "Это web приложение основано на React/Redux для frontend части и на NestJS (NodeJS) для backend части.",
   "profile": "Профиль",
-  "login_nav": "Войти"
+  "login_nav": "Войти",
+  "logout": "Выйти"
 }

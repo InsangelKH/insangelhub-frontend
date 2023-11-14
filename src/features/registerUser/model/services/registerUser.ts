@@ -3,29 +3,31 @@ import { ThunkConfig } from 'app/providers/StoreProvider';
 import { User, userActions } from 'entities/User';
 import { USER_LOCAL_STORAGE_KEY } from 'shared/consts/localstorage';
 
-interface LoginByUsernameProps {
+interface RegisterUserProps {
     email: string;
+    username: string;
     password: string;
 }
 
-export const loginByUsername = createAsyncThunk<
+export const registerUser = createAsyncThunk<
     { user: User },
-    LoginByUsernameProps,
+    RegisterUserProps,
     ThunkConfig<string>
 >(
-    'loginSlice/loginByUsername',
+    'registerSlice/registerUser',
     async (authData, thunkApi) => {
         const { extra, dispatch, rejectWithValue } = thunkApi;
 
         const body = {
             user: {
                 email: authData.email,
+                username: authData.password,
                 password: authData.password,
             },
         };
 
         try {
-            const response = await extra.api.post<{ user: User }>('/login', body);
+            const response = await extra.api.post<{ user: User }>('/register', body);
 
             if (!response.data) {
                 throw new Error();

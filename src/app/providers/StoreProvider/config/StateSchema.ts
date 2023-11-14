@@ -4,11 +4,13 @@ import {
 import { AxiosInstance } from 'axios';
 import { UserSchema } from 'entities/User/model/types/user';
 import { LoginSchema } from 'features/loginByUsername';
+import { RegisterSchema } from 'features/registerUser';
 
 export interface StateSchema {
     user?: UserSchema
     // async reducers
     loginForm?: LoginSchema;
+    registerForm?: RegisterSchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;

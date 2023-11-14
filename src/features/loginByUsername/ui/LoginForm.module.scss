@@ -5,10 +5,21 @@
     width: 60%;
 }
 
+.error {
+    color: red;
+}
+
 .loginButton {
     margin-top: 10px;
     width: 20%;
     margin-left: auto;
+}
+
+.registerWrapper {
+    margin-top: 40px;
+    display: flex;
+    gap: 5px;
+    justify-content: center;
 }
 
 @media screen and (max-width: 748px) {
@@ -17,11 +28,24 @@
         font-size: 17px;
     }
 
-    .loginWrapper {
+    .LoginForm {
         width: 90%;
     }
 
     .loginButton {
         width: 40%;
     }
+
+    .registerWrapper {
+        font-size: var(--font-size-m);
+    }
+}
+
+@media screen and (max-width: 321px) {
+
+    .registerWrapper {
+        text-align: center;
+        flex-direction: column;
+        font-size: var(--font-size-m);
+    }  
 }

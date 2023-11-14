@@ -4,7 +4,9 @@ import cls from './Button.module.scss';
 
 export enum ButtonTheme {
     BACKGROUND = 'background',
-    BACKGROUND_INVERTED = 'backgroundInverted'
+    BACKGROUND_INVERTED = 'backgroundInverted',
+    CLEAR = 'clear',
+    CLEAR_INVERTED = 'clear_inverted'
 }
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {

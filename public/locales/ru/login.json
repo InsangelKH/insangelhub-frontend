@@ -1,5 +1,11 @@
 {
-    "login": "Войти",
-    "type login": "Введите ваш email:",
-    "type password": "Введите ваш пароль:"
+  "login": "Войти",
+  "type login": "Введите ваш email:",
+  "type password": "Введите ваш пароль:",
+  "empty data": "Ошибка: пустые данные или email не введен как email!",
+  "invalid data": "Ошибка: неправльные email или пароль!",
+  "server error": "Ошибка: серверная ошибка!",
+  "type data": "Логин и пароль обязательны!",
+  "No account": "Еще нет аккаунта?",
+  "Create account": "Нажмите сюда что создать его"
 }

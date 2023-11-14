@@ -1,5 +1,11 @@
 {
-    "login": "Login",
-    "type login": "Enter your email:",
-    "type password": "Enter your password:"
+  "login": "Login",
+  "type login": "Enter your email:",
+  "type password": "Enter your password:",
+  "empty data": "Error: empty data or email is not typed like an email!",
+  "invalid data": "Error: invalid email or password!",
+  "server error": "Error: server error!",
+  "type data": "Email and password are required!",
+  "No account": "No account yet?",
+  "Create account": "Click here to create one"
 }

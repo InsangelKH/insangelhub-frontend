@@ -1,10 +1,14 @@
-import { memo } from 'react';
+import { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { ThemeSwitcher } from 'shared/ui/ThemeSwitcher/ThemeSwitcher';
 import { LangSwithcer } from 'shared/ui/LangSwitcher/LangSwithcer';
 import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
 import { RoutePath } from 'shared/config/routeConfig/routeConfig';
+import { useSelector } from 'react-redux';
+import { getUserAuthData, userActions } from 'entities/User';
+import { Button, ButtonTheme } from 'shared/ui/Button/Button';
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDisptach';
 import cls from './Navbar.module.scss';
 
 interface NavbarProps {
@@ -18,19 +22,37 @@ export const Navbar = memo((props: NavbarProps) => {
 
     const { t } = useTranslation();
 
+    const authData = useSelector(getUserAuthData);
+    const dispatch = useAppDispatch();
+
+    const onLogout = useCallback(() => {
+        dispatch(userActions.logout());
+    }, [dispatch]);
+
     return (
         <nav className={classNames(cls.Navbar, {}, [className])}>
             <h2 className={cls.name}>{t('InsangelHub')}</h2>
             <h2 className={cls.nameMobile}>{t('IH')}</h2>
             <ThemeSwitcher />
             <LangSwithcer />
-            <AppLink
-                to={RoutePath.login}
-                theme={AppLinkTheme.SECONDARY}
-                className={cls.login}
-            >
-                <h2>{t('login_nav')}</h2>
-            </AppLink>
+            {!authData && (
+                <AppLink
+                    to={RoutePath.login}
+                    theme={AppLinkTheme.SECONDARY}
+                    className={cls.login}
+                >
+                    <h3>{t('login_nav')}</h3>
+                </AppLink>
+            )}
+            {authData && (
+                <Button
+                    className={cls.logoutBtn}
+                    theme={ButtonTheme.CLEAR_INVERTED}
+                    onClick={onLogout}
+                >
+                    <h3>{t('logout')}</h3>
+                </Button>
+            )}
         </nav>
     );
 });

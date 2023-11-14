@@ -1,0 +1,38 @@
+.RegisterForm {
+    display: flex;
+    gap: 15px;
+    flex-direction: column;
+    width: 60%;
+}
+
+.error {
+    color: red;
+}
+
+.registerButton {
+    margin-top: 10px;
+    min-width: 20%;
+    max-width: 40%;
+    margin-left: auto;
+}
+
+.inputError {
+    border: 2px solid red;
+}
+
+@media screen and (max-width: 748px) {
+
+    h3 {
+        font-size: 17px;
+    }
+
+    .RegisterForm {
+        width: 90%;
+    }
+
+    .registerButton {
+        min-width: 40%;
+        max-width: 70%;
+    }
+
+}

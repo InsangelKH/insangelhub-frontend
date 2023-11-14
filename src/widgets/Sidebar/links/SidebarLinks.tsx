@@ -55,7 +55,7 @@ export const SidebarLinks = memo((props: SidebarLinksProps) => {
                 </p>
             </AppLink>
             <AppLink
-                to={RoutePath.resume}
+                to={RoutePath.profile}
                 theme={AppLinkTheme.SECONDARY}
                 className={cls.appLink}
             >
