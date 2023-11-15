@@ -1,11 +1,11 @@
+import { getUserData } from 'entities/User/model/selectors/userSelectors';
 import { LoginForm } from 'features/loginByUsername';
 import { memo } from 'react';
-import { classNames } from 'shared/lib/classNames/classNames';
-import { Page } from 'shared/ui/Page/Page';
 import { useSelector } from 'react-redux';
-import { getUserAuthData } from 'entities/User';
 import { Navigate } from 'react-router';
 import { RoutePath } from 'shared/config/routeConfig/routeConfig';
+import { classNames } from 'shared/lib/classNames/classNames';
+import { Page } from 'shared/ui/Page/Page';
 import cls from './LoginPage.module.scss';
 
 interface ResumePageProps {
@@ -17,10 +17,10 @@ const LoginPage = memo((props: ResumePageProps) => {
         className,
     } = props;
 
-    const authData = useSelector(getUserAuthData);
+    const userData = useSelector(getUserData);
 
-    if (authData) {
-        return <Navigate to={RoutePath.profile} />;
+    if (userData) {
+        return <Navigate to={`${RoutePath.profile}${userData.id}`} />;
     }
 
     return (

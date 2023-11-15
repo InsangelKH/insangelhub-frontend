@@ -1,13 +1,15 @@
-import { classNames } from 'shared/lib/classNames/classNames';
-import { useTranslation } from 'react-i18next';
+import { getUserData } from 'entities/User/model/selectors/userSelectors';
 import { memo } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
+import { RoutePath } from 'shared/config/routeConfig/routeConfig';
+import { classNames } from 'shared/lib/classNames/classNames';
 import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
 import { Icon } from 'shared/ui/Icon/Icon';
-import { RoutePath } from 'shared/config/routeConfig/routeConfig';
-import cls from './SidebarLinks.module.scss';
 import MainPageIcon from '../../../shared/assets/icons/icon-main-page.svg';
-import ResumeIcon from '../../../shared/assets/icons/icon-resume.svg';
 import ProfileIcon from '../../../shared/assets/icons/icon-profile.svg';
+import ResumeIcon from '../../../shared/assets/icons/icon-resume.svg';
+import cls from './SidebarLinks.module.scss';
 
 interface SidebarLinksProps {
     className?: string;
@@ -23,6 +25,9 @@ export const SidebarLinks = memo((props: SidebarLinksProps) => {
     } = props;
 
     const { t } = useTranslation();
+
+    const userData = useSelector(getUserData);
+
     const mods = {
         [cls.collapsed]: collapsed,
         [cls.collapsing]: collapsing,
@@ -54,18 +59,20 @@ export const SidebarLinks = memo((props: SidebarLinksProps) => {
                     {t('resume')}
                 </p>
             </AppLink>
-            <AppLink
-                to={RoutePath.profile}
-                theme={AppLinkTheme.SECONDARY}
-                className={cls.appLink}
-            >
-                <Icon Svg={ProfileIcon} className={cls.iconProfile} />
-                <p
-                    className={classNames('', mods, [])}
+            {userData && (
+                <AppLink
+                    to={`${RoutePath.profile}${userData.id}`}
+                    theme={AppLinkTheme.SECONDARY}
+                    className={cls.appLink}
                 >
-                    {t('profile')}
-                </p>
-            </AppLink>
+                    <Icon Svg={ProfileIcon} className={cls.iconProfile} />
+                    <p
+                        className={classNames('', mods, [])}
+                    >
+                        {t('profile')}
+                    </p>
+                </AppLink>
+            )}
         </div>
     );
 });

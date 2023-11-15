@@ -4,4 +4,11 @@
     align-items: center;
     height: 100%;
     font: var(--font-l);
+    height: calc(100vh - 85px);
+}
+
+@media screen and (max-width: 1270px) {
+    .NotFoundPage {
+        height: calc(100vh - 140px);
+    }
 }

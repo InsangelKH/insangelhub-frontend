@@ -1,22 +1,29 @@
-import { Suspense, memo } from 'react';
+import { Suspense, memo, useCallback } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { routeConfig } from 'shared/config/routeConfig/routeConfig';
+import { AppRoutesProps, routeConfig } from 'shared/config/routeConfig/routeConfig';
 import { PageLoader } from 'shared/ui/PageLoader/PageLoader';
+import { RequireAuth } from './RequireAuth';
 
 const AppRouter = () => {
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    const renderWithWrapper = useCallback((route: AppRoutesProps) => {
+        const element = (
+            <Suspense fallback={<PageLoader />}>
+                {route.element}
+            </Suspense>
+        );
+        return (
+            <Route
+                key={route.path}
+                path={route.path}
+                element={route.authOnly ? <RequireAuth>{element}</RequireAuth> : element}
+            />
+        );
+    }, []);
+
     return (
         <Routes>
-            {Object.values(routeConfig).map((route) => (
-                <Route
-                    key={route.path}
-                    path={route.path}
-                    element={(
-                        <Suspense fallback={<PageLoader />}>
-                            {route.element}
-                        </Suspense>
-                    )}
-                />
-            ))}
+            {Object.values(routeConfig).map(renderWithWrapper)}
         </Routes>
     );
 };

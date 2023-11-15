@@ -6,6 +6,7 @@ import { Footer } from 'widgets/Footer';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDisptach';
 import { getUserInited, userActions } from 'entities/User';
 import { useSelector } from 'react-redux';
+import { fetchUserData } from 'entities/User/model/services/fetchUserData';
 import { useTheme } from './providers/ThemeProvider/lib/useTheme';
 import { AppRouter } from './providers/routes';
 
@@ -16,6 +17,7 @@ export function App() {
 
     useEffect(() => {
         dispatch(userActions.initAuthData());
+        dispatch(fetchUserData());
     }, [dispatch]);
 
     return (

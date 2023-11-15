@@ -11,5 +11,7 @@ export interface User {
 export interface UserSchema {
     authData?: string;
 
+    userData?: User;
+
     _inited: boolean;
 }

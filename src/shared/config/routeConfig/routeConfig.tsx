@@ -6,6 +6,10 @@ import { RegisterPage } from 'pages/RegisterPage';
 import { ResumePage } from 'pages/ResumePage';
 import { RouteProps } from 'react-router';
 
+export type AppRoutesProps = RouteProps & {
+    authOnly?: boolean;
+}
+
 export enum AppRoutes {
     MAIN = 'main',
     RESUME = 'resume',
@@ -20,14 +24,14 @@ export const RoutePath: Record<AppRoutes, string> = {
     [AppRoutes.MAIN]: '/',
     [AppRoutes.RESUME]: '/resume',
     [AppRoutes.LOGIN]: '/login',
-    [AppRoutes.PROFILE]: '/profile',
+    [AppRoutes.PROFILE]: '/profile/',
     [AppRoutes.REGISTER]: '/register',
     // last
     [AppRoutes.NOT_FOUND]: '*',
 
 };
 
-export const routeConfig: Record<AppRoutes, RouteProps> = {
+export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     [AppRoutes.MAIN]: {
         path: RoutePath.main,
         element: <MainPage />,
@@ -40,13 +44,14 @@ export const routeConfig: Record<AppRoutes, RouteProps> = {
         path: RoutePath.login,
         element: <LoginPage />,
     },
-    [AppRoutes.PROFILE]: {
-        path: RoutePath.profile,
-        element: <ProfilePage />,
-    },
     [AppRoutes.REGISTER]: {
         path: RoutePath.register,
         element: <RegisterPage />,
+    },
+    [AppRoutes.PROFILE]: {
+        path: `${RoutePath.profile}:id`,
+        element: <ProfilePage />,
+        authOnly: true,
     },
     // last
     [AppRoutes.NOT_FOUND]: {

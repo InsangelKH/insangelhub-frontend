@@ -1,13 +1,15 @@
-import { classNames } from 'shared/lib/classNames/classNames';
-import { useTranslation } from 'react-i18next';
 import { memo } from 'react';
-import { AppLink } from 'shared/ui/AppLink/AppLink';
 import { RoutePath } from 'shared/config/routeConfig/routeConfig';
-import { Icon } from 'shared/ui/Icon/Icon';
+import { classNames } from 'shared/lib/classNames/classNames';
+import { AppLink } from 'shared/ui/AppLink/AppLink';
 import { Burger } from 'shared/ui/Burger/Burger';
-import cls from './Footer.module.scss';
+import { Icon } from 'shared/ui/Icon/Icon';
+import { useSelector } from 'react-redux';
+import { getUserData } from 'entities/User/model/selectors/userSelectors';
 import MainPageIcon from '../../../shared/assets/icons/icon-main-page.svg';
 import ResumeIcon from '../../../shared/assets/icons/icon-resume.svg';
+import ProfileIcon from '../../../shared/assets/icons/icon-profile.svg';
+import cls from './Footer.module.scss';
 
 interface FooterProps {
     className?: string;
@@ -18,7 +20,7 @@ export const Footer = memo((props: FooterProps) => {
         className,
     } = props;
 
-    const { t } = useTranslation();
+    const userData = useSelector(getUserData);
 
     return (
         <div className={classNames(cls.Footer, {}, [className])}>
@@ -28,6 +30,11 @@ export const Footer = memo((props: FooterProps) => {
             <AppLink to={RoutePath.resume} className={cls.link}>
                 <Icon Svg={ResumeIcon} className={cls.icon} />
             </AppLink>
+            {userData && (
+                <AppLink to={`${RoutePath.profile}${userData.id}`} className={cls.appLink}>
+                    <Icon Svg={ProfileIcon} className={cls.iconProfile} />
+                </AppLink>
+            )}
             <Burger className={cls.burger} />
         </div>
     );
