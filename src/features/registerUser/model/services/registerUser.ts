@@ -21,7 +21,7 @@ export const registerUser = createAsyncThunk<
         const body = {
             user: {
                 email: authData.email,
-                username: authData.password,
+                username: authData.username,
                 password: authData.password,
             },
         };

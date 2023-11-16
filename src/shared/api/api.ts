@@ -1,8 +1,10 @@
 import axios from 'axios';
 import { USER_LOCAL_STORAGE_KEY } from 'shared/consts/localstorage';
 
+export const SERVER_URL = 'http://localhost:3000';
+
 export const $api = axios.create({
-    baseURL: 'http://localhost:3000',
+    baseURL: SERVER_URL,
 });
 
 $api.interceptors.request.use((config) => {
