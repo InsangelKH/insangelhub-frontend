@@ -1,15 +1,18 @@
-import { memo, useCallback, useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
+import { memo, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { SERVER_URL } from 'shared/api/api';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { DynamicModuleLoader } from 'shared/lib/components/DynamicModuleLoader';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDisptach';
-import { Input } from 'shared/ui/Input/Input';
-import { getProfileForm, getProfileReadonly } from '../../../../entities/Profile/model/selectors/profileSelectors';
+import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
+import { getProfileForm, getProfileImageFile, getProfileReadonly } from '../../../../entities/Profile/model/selectors/profileSelectors';
 import { fetchProfileData } from '../../../../entities/Profile/model/services/fetchProfileData';
-import { profileActions, profileReducer } from '../../../../entities/Profile/model/slice/profileSlice';
+import { profileReducer } from '../../../../entities/Profile/model/slice/profileSlice';
+import DefaultAvatar from '../../../../shared/assets/pictures/default-avatar.png';
+import { ProfileAvatar } from '../ProfileAvatar/ProfileAvatar';
+import { ProfileData } from '../ProfileData/ProfileData';
 import cls from './Profile.module.scss';
+import { ProfileHeader } from '../ProfileHeader/ProfileHeader';
 
 interface ProfileProps {
     className?: string;
@@ -26,26 +29,24 @@ export const Profile = memo((props: ProfileProps) => {
         id,
     } = props;
 
-    const { t } = useTranslation('profile');
     const dispatch = useAppDispatch();
     const profile = useSelector(getProfileForm);
     const readonly = useSelector(getProfileReadonly);
 
-    const email = profile?.email || '';
-    const username = profile?.username || '';
-    const bio = profile?.bio || '';
+    let avatar: string;
 
-    const onChangeEmail = useCallback((value?: string) => {
-        dispatch(profileActions.updateForm({ email: value || '' }));
-    }, [dispatch]);
+    if (profile?.image === '') {
+        avatar = DefaultAvatar;
+    } else {
+        avatar = `${SERVER_URL}/images/${profile?.image}`;
+    }
 
-    const onChangeUsername = useCallback((value?: string) => {
-        dispatch(profileActions.updateForm({ username: value || '' }));
-    }, [dispatch]);
+    const imageFile = useSelector(getProfileImageFile);
+    let imageSrc;
 
-    const onChangeBio = useCallback((value?: string) => {
-        dispatch(profileActions.updateForm({ bio: value || '' }));
-    }, [dispatch]);
+    if (imageFile) {
+        imageSrc = URL.createObjectURL(imageFile);
+    }
 
     useEffect(() => {
         if (id) {
@@ -55,43 +56,17 @@ export const Profile = memo((props: ProfileProps) => {
 
     return (
         <DynamicModuleLoader reducers={initalReducers}>
+            <ProfileHeader />
             <div className={classNames(cls.Profile, {}, [className])}>
-                <img
-                    className={cls.avatar}
-                    src={`${SERVER_URL}/images/${profile?.image}`}
-                    alt="img"
+                <ProfileAvatar
+                    readonly={readonly}
+                    avatar={avatar}
+                    imageFile={imageFile}
+                    imageSrc={imageSrc}
                 />
-                <div className={cls.profileData}>
-                    <h1 className={cls.profileDataTitle}>{t('user info')}</h1>
-                    <div className={cls.profileField}>
-                        <h3 className={cls.profileFiledTitle}>{t('user_email')}</h3>
-                        <Input
-                            className={classNames('', { [cls.profileFieldValue]: readonly }, [className])}
-                            value={email}
-                            readonly={readonly}
-                            onChange={onChangeEmail}
-                        />
-                    </div>
-                    <div className={cls.profileField}>
-                        <h3 className={cls.profileFiledTitle}>{t('user_username')}</h3>
-                        <Input
-                            className={classNames('', { [cls.profileFieldValue]: readonly }, [className])}
-                            value={username}
-                            readonly={readonly}
-                            onChange={onChangeUsername}
-                        />
-                    </div>
-                    <div className={cls.profileField}>
-                        <h3 className={cls.profileFiledTitle}>{t('user_bio')}</h3>
-                        <Input
-                            className={classNames('', { [cls.profileFieldValue]: readonly }, [className])}
-                            value={bio}
-                            readonly={readonly}
-                            onChange={onChangeBio}
-                        />
-                    </div>
-                </div>
+                <ProfileData readonly={readonly} />
             </div>
+            <Skeleton className={cls.avatar} width={200} height={200} border="50%" />
         </DynamicModuleLoader>
     );
 });

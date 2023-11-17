@@ -1,0 +1,34 @@
+.ProfileAvatar {
+    position: relative;
+}
+
+.avatar {
+    width: 250px;
+    height: 350px;
+    border: 4px solid var(--primary-color);
+    border-radius: 20px;
+}
+
+.avatarEdit {
+    opacity: 0.6;
+}
+
+.uploadBtn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@media screen and (max-width: 748px) {
+    .ProfileAvatar {
+        display: flex;
+        justify-content: center;
+    }
+
+    .avatar {
+        width: 200px;
+        height: 250px;
+        border-radius: 50%;
+    }
+}

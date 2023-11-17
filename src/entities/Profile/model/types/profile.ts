@@ -9,6 +9,7 @@ export interface Profile {
 export interface ProfileSchema {
     data?: Profile;
     form?: Profile;
+    imageFile?: File;
     isLoading?: boolean;
     readonly?: boolean;
     error?: string;

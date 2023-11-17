@@ -1,10 +1,9 @@
-import { classNames } from 'shared/lib/classNames/classNames';
-import { useTranslation } from 'react-i18next';
-import { memo } from 'react';
-import { Page } from 'shared/ui/Page/Page';
-import { useParams } from 'react-router';
 import { Profile } from 'features/updateProfile';
-import { ProfileHeader } from 'features/updateProfile/ui/ProfileHeader/ProfileHeader';
+import { memo } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useParams } from 'react-router';
+import { classNames } from 'shared/lib/classNames/classNames';
+import { Page } from 'shared/ui/Page/Page';
 import cls from './ProfilePage.module.scss';
 
 interface ProfilePageProps {
@@ -21,7 +20,6 @@ const ProfilePage = memo((props: ProfilePageProps) => {
 
     return (
         <Page className={classNames(cls.ProfilePage, {}, [className])}>
-            <ProfileHeader />
             <Profile id={id} />
         </Page>
     );

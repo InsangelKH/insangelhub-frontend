@@ -7,8 +7,40 @@
 .editField {
     display: flex;
     gap: 15px;
+    width: 30%;
+    justify-content: end;
 }
 
 .editBtn {
     min-width: 10%;
+}
+
+.editSave {
+    min-width: 40%;
+}
+
+@media screen and (max-width: 748px) {
+    .ProfileHeader {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        margin-bottom: 30px;
+    }
+
+    h1 {
+        font-size: var(--font-size-l);
+    }
+
+    .editField {
+        width: 100%;
+    }
+
+    .editSave {
+        min-width: 60%;
+    }
+
+    .editBtn {
+        width: 50%;
+    }
+    
 }

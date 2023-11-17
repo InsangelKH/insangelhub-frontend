@@ -1,4 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { updateProfile } from 'features/updateProfile/model/services/updateProfile';
 import { fetchProfileData } from '../services/fetchProfileData';
 import { Profile, ProfileSchema } from '../types/profile';
 
@@ -22,9 +23,13 @@ export const profileSlice = createSlice({
         onCancel: (state) => {
             state.readonly = true;
             state.form = state.data;
+            state.imageFile = undefined;
         },
         updateForm: (state, action: PayloadAction<Profile>) => {
             state.form = { ...state.form, ...action.payload };
+        },
+        setImageFile: (state, action: PayloadAction<File>) => {
+            state.imageFile = action.payload;
         },
     },
     extraReducers: (builder) => {
@@ -37,6 +42,19 @@ export const profileSlice = createSlice({
                 state.isLoading = false;
             })
             .addCase(fetchProfileData.rejected, (state, action) => {
+                state.isLoading = false;
+                state.error = action.payload;
+            })
+            .addCase(updateProfile.pending, (state, action) => {
+                state.error = undefined;
+                state.isLoading = true;
+            })
+            .addCase(updateProfile.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.readonly = true;
+                state.form = state.data;
+            })
+            .addCase(updateProfile.rejected, (state, action) => {
                 state.isLoading = false;
                 state.error = action.payload;
             });
