@@ -4,5 +4,7 @@
   "user_username": "Username:",
   "user_bio": "About user:",
   "user": "User:",
-  "edit": "Edit"
+  "edit": "Edit",
+  "cancel": "Cancel",
+  "save": "Save"
 }

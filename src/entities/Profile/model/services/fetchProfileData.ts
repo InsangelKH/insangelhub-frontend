@@ -30,6 +30,7 @@ export const fetchProfileData = createAsyncThunk<
             const data = response.data.user;
 
             dispatch(profileActions.setProfileData(data));
+            dispatch(profileActions.setProfileForm(data));
 
             return data;
         } catch (e) {

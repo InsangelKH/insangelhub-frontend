@@ -13,8 +13,18 @@ export const profileSlice = createSlice({
         setProfileData: (state, action: PayloadAction<Profile>) => {
             state.data = action.payload;
         },
-        setReadonly: (state) => {
-            state.readonly = !state.readonly;
+        setProfileForm: (state, action: PayloadAction<Profile>) => {
+            state.form = action.payload;
+        },
+        onEdit: (state) => {
+            state.readonly = false;
+        },
+        onCancel: (state) => {
+            state.readonly = true;
+            state.form = state.data;
+        },
+        updateForm: (state, action: PayloadAction<Profile>) => {
+            state.form = { ...state.form, ...action.payload };
         },
     },
     extraReducers: (builder) => {
