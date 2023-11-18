@@ -4,15 +4,20 @@ import { SERVER_URL } from 'shared/api/api';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { DynamicModuleLoader } from 'shared/lib/components/DynamicModuleLoader';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDisptach';
-import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
-import { getProfileForm, getProfileImageFile, getProfileReadonly } from '../../../../entities/Profile/model/selectors/profileSelectors';
+import { serverOrUserError } from '../../model/rejections/profileRejections';
+import {
+    getProfileError,
+    getProfileForm, getProfileImageFile, getProfileIsLoading, getProfileReadonly,
+} from '../../../../entities/Profile/model/selectors/profileSelectors';
 import { fetchProfileData } from '../../../../entities/Profile/model/services/fetchProfileData';
 import { profileReducer } from '../../../../entities/Profile/model/slice/profileSlice';
 import DefaultAvatar from '../../../../shared/assets/pictures/default-avatar.png';
 import { ProfileAvatar } from '../ProfileAvatar/ProfileAvatar';
 import { ProfileData } from '../ProfileData/ProfileData';
-import cls from './Profile.module.scss';
 import { ProfileHeader } from '../ProfileHeader/ProfileHeader';
+import { ProfileSkeleton } from '../ProfileSkeleton/ProfileSkeleton';
+import cls from './Profile.module.scss';
+import { ProfileError } from '../ProfileError/ProfileError';
 
 interface ProfileProps {
     className?: string;
@@ -32,6 +37,8 @@ export const Profile = memo((props: ProfileProps) => {
     const dispatch = useAppDispatch();
     const profile = useSelector(getProfileForm);
     const readonly = useSelector(getProfileReadonly);
+    const isLoading = useSelector(getProfileIsLoading);
+    const error = useSelector(getProfileError);
 
     let avatar: string;
 
@@ -54,6 +61,22 @@ export const Profile = memo((props: ProfileProps) => {
         }
     }, [dispatch, id]);
 
+    if (isLoading) {
+        return (
+            <DynamicModuleLoader reducers={initalReducers}>
+                <ProfileSkeleton />
+            </DynamicModuleLoader>
+        );
+    }
+
+    if (error === serverOrUserError) {
+        return (
+            <DynamicModuleLoader reducers={initalReducers}>
+                <ProfileError />
+            </DynamicModuleLoader>
+        );
+    }
+
     return (
         <DynamicModuleLoader reducers={initalReducers}>
             <ProfileHeader />
@@ -66,7 +89,6 @@ export const Profile = memo((props: ProfileProps) => {
                 />
                 <ProfileData readonly={readonly} />
             </div>
-            <Skeleton className={cls.avatar} width={200} height={200} border="50%" />
         </DynamicModuleLoader>
     );
 });

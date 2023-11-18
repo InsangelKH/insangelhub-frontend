@@ -4,7 +4,7 @@
   "type username": "Enter your username:",
   "register": "Register",
   "email empty": "Email must not be empty and must look like an email",
-  "username empty": "Username must not be empty",
+  "username empty": "Username must consist at least of 3 letters",
   "password empty": "Password must not be empty",
   "user taken": "Email or username are taken",
   "server error": "Server error"

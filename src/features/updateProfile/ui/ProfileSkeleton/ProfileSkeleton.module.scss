@@ -1,0 +1,43 @@
+.ProfileSkeleton {
+    display: flex;
+    flex-direction: column;
+}
+
+.avatar {
+    margin-bottom: 30px;
+}
+
+.editBtn {
+    margin-bottom: 30px;
+}    
+
+.skeletonData {
+    display: flex;
+    width: 100%;
+    gap: 20px;
+}
+
+.mobileAvatar {
+    margin: 0 auto;
+}
+
+@media screen and (min-width: 749px) {
+    .editBtn {
+        display: none;
+    }
+
+    .mobileAvatar {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 748px) {
+    .skeletonData {
+        flex-direction: column;
+    }
+
+    .deskAvatar {
+        display: none;
+    }
+
+}

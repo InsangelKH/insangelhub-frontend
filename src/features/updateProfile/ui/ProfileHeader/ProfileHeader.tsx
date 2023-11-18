@@ -1,4 +1,6 @@
-import { getProfileData, getProfileIsLoading, getProfileReadonly } from 'entities/Profile/model/selectors/profileSelectors';
+import {
+    getProfileData, getProfileForm, getProfileIsLoading, getProfileReadonly,
+} from 'entities/Profile/model/selectors/profileSelectors';
 import { profileActions } from 'entities/Profile/model/slice/profileSlice';
 import { getUserData } from 'entities/User/model/selectors/userSelectors';
 import { memo, useCallback } from 'react';
@@ -8,6 +10,7 @@ import { useParams } from 'react-router';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDisptach';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
+import { isEmailValid, isUsernameValid } from 'shared/lib/regex/regex';
 import cls from './ProfileHeader.module.scss';
 import { updateProfile } from '../../model/services/updateProfile';
 
@@ -30,6 +33,11 @@ export const ProfileHeader = memo((props: ProfileHeaderProps) => {
     const isLoading = useSelector(getProfileIsLoading);
     const userId = user?.id.toString();
     const readonly = useSelector(getProfileReadonly);
+    const form = useSelector(getProfileForm);
+
+    const email = form?.email;
+    const username = form?.username;
+    const bio = form?.bio;
 
     const onEdit = useCallback(() => {
         dispatch(profileActions.onEdit());
@@ -37,11 +45,19 @@ export const ProfileHeader = memo((props: ProfileHeaderProps) => {
 
     const onCancel = useCallback(() => {
         dispatch(profileActions.onCancel());
+        dispatch(profileActions.setEmpyField(false));
     }, [dispatch]);
 
     const onSave = useCallback(() => {
+        if (
+            !isUsernameValid(username) || bio === '' || !isEmailValid(email)
+        ) {
+            dispatch(profileActions.setEmpyField(true));
+            return;
+        }
+        dispatch(profileActions.setEmpyField(false));
         dispatch(updateProfile());
-    }, [dispatch]);
+    }, [bio, dispatch, email, username]);
 
     return (
         <div className={classNames(cls.ProfileHeader, {}, [className])}>

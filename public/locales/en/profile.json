@@ -7,5 +7,9 @@
   "edit": "Edit",
   "cancel": "Cancel",
   "save": "Save",
-  "change avatar": "Change"
+  "change avatar": "Change",
+  "profile error": "User was not found or server error",
+  "email error": "Email must not be empty and must look like an email",
+  "username error": "Username must consist at least of 3 letters",
+  "bio error": "User information must not be empty"
 }

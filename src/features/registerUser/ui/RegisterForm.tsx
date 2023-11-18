@@ -7,6 +7,7 @@ import { DynamicModuleLoader, ReducersList } from 'shared/lib/components/Dynamic
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDisptach';
 import { Button } from 'shared/ui/Button/Button';
 import { Input } from 'shared/ui/Input/Input';
+import { isEmailValid, isUsernameValid } from 'shared/lib/regex/regex';
 import {
     getRegisterEmail, getRegisterError, getRegisterIsLoading, getRegisterPassword, getRegisterUsername,
 } from '../model/selectors/registerSelectors';
@@ -54,20 +55,15 @@ export const RegisterForm = memo((props: RegisterFormProps) => {
         dispatch(registerActions.setPassword(value))
     ), [dispatch]);
 
-    const isEmailValid = (email: string) => {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailRegex.test(email);
-    };
-
     const onRegisterClick = useCallback(() => {
-        if (isEmailValid(email) && password && username !== '') {
+        if (isEmailValid(email) && password && !isUsernameValid(username)) {
             dispatch(registerUser({ email, username, password }));
             setEmailEmpty(false);
             setUsernameEmpty(false);
             setPasswordEmpty(false);
         } else {
             setEmailEmpty(!isEmailValid(email));
-            setUsernameEmpty(username === '');
+            setUsernameEmpty(!isUsernameValid(username));
             setPasswordEmpty(password === '');
         }
     }, [dispatch, email, password, username]);

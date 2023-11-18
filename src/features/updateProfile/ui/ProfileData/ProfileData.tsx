@@ -1,4 +1,4 @@
-import { getProfileForm } from 'entities/Profile/model/selectors/profileSelectors';
+import { getProfileEmptyField, getProfileForm } from 'entities/Profile/model/selectors/profileSelectors';
 import { getUserData } from 'entities/User/model/selectors/userSelectors';
 import { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -7,6 +7,7 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import { Input } from 'shared/ui/Input/Input';
 import { profileActions } from 'entities/Profile/model/slice/profileSlice';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDisptach';
+import { isEmailValid, isUsernameValid } from 'shared/lib/regex/regex';
 import cls from './ProfileData.module.scss';
 
 interface ProfileDataProps {
@@ -26,6 +27,7 @@ export const ProfileData = memo((props: ProfileDataProps) => {
 
     const profile = useSelector(getProfileForm);
     const user = useSelector(getUserData);
+    const emptyField = useSelector(getProfileEmptyField);
 
     const email = profile?.email || '';
     const username = profile?.username || '';
@@ -51,12 +53,19 @@ export const ProfileData = memo((props: ProfileDataProps) => {
                     <h3 className={cls.profileFieldTitle}>{t('user_email')}</h3>
                     {readonly && <p>{email}</p>}
                     {!readonly && (
-                        <Input
-                            className={classNames(cls.input, { [cls.profileFieldValue]: readonly }, [className])}
-                            value={email}
-                            readonly={readonly}
-                            onChange={onChangeEmail}
-                        />
+                        <>
+                            {emptyField && !isEmailValid(email)
+                            && <p className={cls.error}>{t('email error')}</p>}
+                            <Input
+                                className={classNames(cls.input, {
+                                    [cls.profileFieldValue]: readonly,
+                                    [cls.inputError]: emptyField && email === '',
+                                }, [className])}
+                                value={email}
+                                readonly={readonly}
+                                onChange={onChangeEmail}
+                            />
+                        </>
                     ) }
                 </div>
             )}
@@ -64,24 +73,36 @@ export const ProfileData = memo((props: ProfileDataProps) => {
                 <h3 className={cls.profileFieldTitle}>{t('user_username')}</h3>
                 {readonly && <p>{username}</p>}
                 {!readonly && (
-                    <Input
-                        className={classNames(cls.input, { [cls.profileFieldValue]: readonly }, [className])}
-                        value={username}
-                        readonly={readonly}
-                        onChange={onChangeUsername}
-                    />
+                    <>
+                        {emptyField && !isUsernameValid(username) && <p className={cls.error}>{t('username error')}</p>}
+                        <Input
+                            className={classNames(cls.input, {
+                                [cls.profileFieldValue]: readonly,
+                                [cls.inputError]: emptyField && username === '',
+                            }, [className])}
+                            value={username}
+                            readonly={readonly}
+                            onChange={onChangeUsername}
+                        />
+                    </>
                 ) }
             </div>
             <div className={cls.profileField}>
                 <h3 className={cls.profileFieldTitle}>{t('user_bio')}</h3>
                 {readonly && <p>{bio}</p>}
                 {!readonly && (
-                    <Input
-                        className={classNames(cls.input, { [cls.profileFieldValue]: readonly }, [className])}
-                        value={bio}
-                        readonly={readonly}
-                        onChange={onChangeBio}
-                    />
+                    <>
+                        {emptyField && bio === '' && <p className={cls.error}>{t('bio error')}</p>}
+                        <Input
+                            className={classNames(cls.input, {
+                                [cls.profileFieldValue]: readonly,
+                                [cls.inputError]: emptyField && bio === '',
+                            }, [className])}
+                            value={bio}
+                            readonly={readonly}
+                            onChange={onChangeBio}
+                        />
+                    </>
                 )}
             </div>
         </div>

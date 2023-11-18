@@ -13,4 +13,5 @@ export interface ProfileSchema {
     isLoading?: boolean;
     readonly?: boolean;
     error?: string;
+    emptyField?: boolean;
 }

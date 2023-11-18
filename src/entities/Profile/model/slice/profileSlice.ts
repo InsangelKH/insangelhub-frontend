@@ -31,6 +31,9 @@ export const profileSlice = createSlice({
         setImageFile: (state, action: PayloadAction<File>) => {
             state.imageFile = action.payload;
         },
+        setEmpyField: (state, action: PayloadAction<boolean>) => {
+            state.emptyField = action.payload;
+        },
     },
     extraReducers: (builder) => {
         builder

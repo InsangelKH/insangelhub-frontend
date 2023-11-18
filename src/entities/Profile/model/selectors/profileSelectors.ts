@@ -6,3 +6,4 @@ export const getProfileReadonly = (state: StateSchema) => state.profile?.readonl
 export const getProfileIsLoading = (state: StateSchema) => state.profile?.isLoading;
 export const getProfileError = (state: StateSchema) => state.profile?.error;
 export const getProfileImageFile = (state: StateSchema) => state.profile?.imageFile;
+export const getProfileEmptyField = (state: StateSchema) => state.profile?.emptyField;
