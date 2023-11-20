@@ -1,0 +1,91 @@
+// SMALL CARD
+
+.cardSmall {
+    width: 200px;
+    height: 230px;
+    padding: 8px;
+    border: 2px solid var(--primary-color);
+    background-color: var(--card);
+    border-radius: 15px;
+    overflow: hidden;
+    cursor: pointer;
+
+    &:hover {
+        opacity: 0.7;
+        scale: 1.05;
+    }
+}
+
+.imageSmall {
+    min-width: 100%;
+    height: 160px;
+    border-radius: 5px;
+}
+
+.typeSmall {
+    color: var(--secondary-color);
+    font-weight: bold;
+    font-size: var(--font-size-s);
+    width: 100%; 
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.titleSmall {
+    color: var(---inverted-bg-color);
+    width: 100%; 
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+// BIG CARD
+
+.cardBig {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border: 2px solid var(--primary-color);
+    background-color: var(--card);
+    border-radius: 15px;
+}
+
+.authorDate {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.avatarBig {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.authorBig {
+    font-weight: bold;
+}
+
+.subtitleBig {
+    font-size: var(--font-size-l);
+}
+
+.imageBig {
+    width: 100%;
+    height: 250px;
+    border-radius: 5px;
+}
+
+.textBig {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+.btnBig {
+    width: 150px;
+}

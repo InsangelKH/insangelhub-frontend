@@ -9,6 +9,7 @@ import { Icon } from 'shared/ui/Icon/Icon';
 import MainPageIcon from '../../../shared/assets/icons/icon-main-page.svg';
 import ProfileIcon from '../../../shared/assets/icons/icon-profile.svg';
 import ResumeIcon from '../../../shared/assets/icons/icon-resume.svg';
+import ArticlesIcon from '../../../shared/assets/icons/icon-articles.svg';
 import cls from './SidebarLinks.module.scss';
 
 interface SidebarLinksProps {
@@ -73,6 +74,18 @@ export const SidebarLinks = memo((props: SidebarLinksProps) => {
                     </p>
                 </AppLink>
             )}
+            <AppLink
+                to={RoutePath.articles}
+                theme={AppLinkTheme.SECONDARY}
+                className={cls.appLink}
+            >
+                <Icon Svg={ArticlesIcon} className={cls.iconArticles} />
+                <p
+                    className={classNames('', mods, [])}
+                >
+                    {t('articles')}
+                </p>
+            </AppLink>
         </div>
     );
 });

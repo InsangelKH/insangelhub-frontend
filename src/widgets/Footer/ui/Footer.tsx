@@ -9,6 +9,7 @@ import { getUserData } from 'entities/User/model/selectors/userSelectors';
 import MainPageIcon from '../../../shared/assets/icons/icon-main-page.svg';
 import ResumeIcon from '../../../shared/assets/icons/icon-resume.svg';
 import ProfileIcon from '../../../shared/assets/icons/icon-profile.svg';
+import ArticlesIcon from '../../../shared/assets/icons/icon-articles.svg';
 import cls from './Footer.module.scss';
 
 interface FooterProps {
@@ -35,6 +36,9 @@ export const Footer = memo((props: FooterProps) => {
                     <Icon Svg={ProfileIcon} className={cls.iconProfile} />
                 </AppLink>
             )}
+            <AppLink to={RoutePath.articles} className={cls.link}>
+                <Icon Svg={ArticlesIcon} className={cls.iconArticles} />
+            </AppLink>
             <Burger className={cls.burger} />
         </div>
     );

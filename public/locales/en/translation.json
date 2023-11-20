@@ -14,5 +14,6 @@
   "app based on": "This web application is based on React/Redux for a frontend part and NestJS (NodeJS) for a backend part.",
   "profile": "Profile",
   "login_nav": "Login",
-  "logout": "Logout"
+  "logout": "Logout",
+  "articles": "Articles"
 }
