@@ -1,1 +1,11 @@
-.ArticlesList {}
+.ArticlesList.SMALL {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+}
+
+.ArticlesList.BIG {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}

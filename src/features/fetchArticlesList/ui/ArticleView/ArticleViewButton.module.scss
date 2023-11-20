@@ -1,0 +1,22 @@
+.ArticleView {
+    display: flex;
+    gap: 3px;
+    justify-content: center;
+    padding: 5px;
+    border-radius: 5px;
+    width: 70px;
+    cursor: pointer;
+}
+
+.SMALL {
+    background-image: linear-gradient(to right, var(--card-secondary) 50%, var(--card) 50%);
+}
+
+.BIG {
+    background-image: linear-gradient(to right, var(--card) 50%, var(--card-secondary) 50%);
+}
+
+.icon {
+    width: 30px;
+    height: 30px;
+}

@@ -1,3 +1,5 @@
+import { User } from 'entities/User';
+
 export type ArticleType = 'IT' | 'ECONOMICS' | 'LIFE';
 
 export interface TextBlock {
@@ -25,10 +27,11 @@ export interface Article {
     title: string;
     subtitle: string;
     image: string;
-    createAt: string;
-    updateAt: string;
+    createdAt: string;
+    updatedAt: string;
     type: ArticleType[];
     blocks: BlockType[];
+    author: User;
 }
 
 export interface ArticleSchema {
