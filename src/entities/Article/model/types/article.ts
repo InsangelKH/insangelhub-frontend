@@ -37,5 +37,5 @@ export interface Article {
 export interface ArticleSchema {
     article?: Article;
     isLoading?: boolean;
-    error?: boolean;
+    error?: string;
 }

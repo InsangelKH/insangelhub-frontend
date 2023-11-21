@@ -10,8 +10,8 @@ export interface User {
 
 export interface UserSchema {
     authData?: string;
-
     userData?: User;
+    page: number;
 
     _inited: boolean;
 }

@@ -11,6 +11,4 @@ export interface ArticlesListSchema {
     isLoading?: boolean;
     error?: string;
     view?: ArticleView;
-
-    page: number;
 }

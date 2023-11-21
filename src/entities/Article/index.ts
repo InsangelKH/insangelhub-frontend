@@ -1,3 +1,6 @@
-import { ArticleSchema } from './model/types/article';
+import { ArticleSchema, Article } from './model/types/article';
 
-export { ArticleSchema };
+export {
+    ArticleSchema,
+    Article,
+};

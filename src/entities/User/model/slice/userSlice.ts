@@ -4,6 +4,7 @@ import { User, UserSchema } from '../types/user';
 
 const initialState: UserSchema = {
     _inited: false,
+    page: 1,
 };
 
 export const userSlice = createSlice({
@@ -27,6 +28,9 @@ export const userSlice = createSlice({
             state.authData = undefined;
             state.userData = undefined;
             localStorage.removeItem(USER_LOCAL_STORAGE_KEY);
+        },
+        setArticlePage: (state, action: PayloadAction<number>) => {
+            state.page = action.payload;
         },
     },
 });

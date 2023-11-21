@@ -5,7 +5,6 @@ import { ArticleView, ArticlesListSchema } from '../types/articlesList';
 import { fetchArticlesList } from '../services/fetchArticlesList';
 
 const initialState: ArticlesListSchema = {
-    page: 1,
 };
 
 export const articlesListSlice = createSlice({
@@ -24,9 +23,6 @@ export const articlesListSlice = createSlice({
         setArticleView: (state) => {
             state.view = state.view === ArticleView.SMALL ? ArticleView.BIG : ArticleView.SMALL;
             localStorage.setItem(VIEW_LOCAL_STORAGE_KEY, state.view);
-        },
-        setArticlePage: (state, action: PayloadAction<number>) => {
-            state.page = action.payload;
         },
     },
     extraReducers: (builder) => {

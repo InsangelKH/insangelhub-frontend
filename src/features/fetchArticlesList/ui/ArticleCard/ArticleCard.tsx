@@ -1,9 +1,12 @@
+import { ArticleType } from 'entities/Article/model/types/article';
 import { memo } from 'react';
-import { classNames } from 'shared/lib/classNames/classNames';
-import { Button } from 'shared/ui/Button/Button';
 import { useTranslation } from 'react-i18next';
 import { SERVER_URL } from 'shared/api/api';
-import { ArticleType } from 'entities/Article/model/types/article';
+import { RoutePath } from 'shared/config/routeConfig/routeConfig';
+import { classNames } from 'shared/lib/classNames/classNames';
+import { Button } from 'shared/ui/Button/Button';
+import { useNavigate } from 'react-router';
+import { formattedDate } from 'shared/lib/date/date';
 import { ArticleView } from '../../model/types/articlesList';
 import cls from './ArticleCard.module.scss';
 
@@ -18,6 +21,7 @@ interface ArticleCardProps {
     image?: string;
     paragraphs?: string[];
     types?: ArticleType[];
+    slug?: string;
 }
 
 export const ArticleCard = memo((props: ArticleCardProps) => {
@@ -31,17 +35,19 @@ export const ArticleCard = memo((props: ArticleCardProps) => {
         image,
         paragraphs,
         types,
+        slug,
         articleView = ArticleView.SMALL,
     } = props;
 
     const { t } = useTranslation('articles');
-    const dateObject = createdAt ? new Date(createdAt) : null;
 
-    const day = dateObject?.getDate().toString().padStart(2, '0');
-    const month = dateObject?.getMonth()?.toString().padStart(2, '0');
-    const year = dateObject?.getFullYear();
+    const date = formattedDate(createdAt);
 
-    const date = `${day}.${month}.${year}`;
+    const navigate = useNavigate();
+
+    const onNavigate = (slug: string) => {
+        navigate(`${RoutePath.article_details}${slug}`);
+    };
 
     if (articleView === ArticleView.BIG) {
         return (
@@ -76,7 +82,10 @@ export const ArticleCard = memo((props: ArticleCardProps) => {
                 <div className={cls.textBig}>
                     {paragraphs?.map((paragraph) => paragraph)}
                 </div>
-                <Button className={cls.btnBig}>
+                <Button
+                    className={cls.btnBig}
+                    onClick={() => onNavigate(slug!)}
+                >
                     {t('read more')}
                 </Button>
             </div>
@@ -84,7 +93,10 @@ export const ArticleCard = memo((props: ArticleCardProps) => {
     }
 
     return (
-        <div className={classNames(cls.cardSmall, {}, [className])}>
+        <div
+            className={classNames(cls.cardSmall, {}, [className])}
+            onClick={() => onNavigate(slug!)}
+        >
             <img
                 src={`${SERVER_URL}/images/${image}`}
                 alt={`${title} pic`}
