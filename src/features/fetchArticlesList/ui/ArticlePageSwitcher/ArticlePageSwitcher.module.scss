@@ -1,0 +1,16 @@
+.ArticlePageSwitcher {
+    display: flex; 
+    gap: 10px;
+    cursor: pointer;
+    max-width: max-content;
+}
+
+.number {
+    background: var(--card);
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.active {
+    background: var(--card-secondary);
+}

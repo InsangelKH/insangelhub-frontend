@@ -5,15 +5,22 @@ import { articlesListActions } from '../slice/articlesListSlice';
 
 export const fetchArticlesList = createAsyncThunk<
     {articles: Article[], articlesCount: number},
-    void,
+    { offset: number, limit: number},
     ThunkConfig<string>
 >(
     'articlesListSlice/fetchArticlesList',
     async (authData, thunkApi) => {
-        const { extra, dispatch, rejectWithValue } = thunkApi;
+        const {
+            extra, dispatch, rejectWithValue,
+        } = thunkApi;
 
         try {
-            const response = await extra.api.get('/articles');
+            const response = await extra.api.get('/articles', {
+                params: {
+                    offset: authData.offset,
+                    limit: authData.limit,
+                },
+            });
 
             if (!response.data) {
                 throw new Error();

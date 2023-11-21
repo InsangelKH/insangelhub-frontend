@@ -10,5 +10,7 @@ export interface ArticlesListSchema {
     articlesCount?: number;
     isLoading?: boolean;
     error?: string;
-    view: ArticleView;
+    view?: ArticleView;
+
+    page: number;
 }

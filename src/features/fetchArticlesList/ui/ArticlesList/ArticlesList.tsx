@@ -6,11 +6,13 @@ import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDisptach';
 import { useSelector } from 'react-redux';
 import { TextBlock } from 'entities/Article/model/types/article';
 import { ArticleView } from '../../model/types/articlesList';
-import { getArticleListView, getArticlesList } from '../../model/selectors/articlesListSelectors';
+import { getArticleListPage, getArticleListView, getArticlesList } from '../../model/selectors/articlesListSelectors';
 import cls from './ArticlesList.module.scss';
-import { articlesListReducer } from '../../model/slice/articlesListSlice';
+import { articlesListActions, articlesListReducer } from '../../model/slice/articlesListSlice';
 import { fetchArticlesList } from '../../model/services/fetchArticlesList';
 import { ArticleCard } from '../ArticleCard/ArticleCard';
+import { ArticleViewButton } from '../ArticleView/ArticleViewButton';
+import { ArticlePageSwitcher } from '../ArticlePageSwitcher/ArticlePageSwitcher';
 
 interface ArticlesListProps {
     className?: string;
@@ -30,15 +32,23 @@ export const ArticlesList = memo((props: ArticlesListProps) => {
     const dispatch = useAppDispatch();
     const article = useSelector(getArticlesList);
     const view = useSelector(getArticleListView);
+    const page = useSelector(getArticleListPage);
+    const limit = view === ArticleView.SMALL ? 8 : 4;
+    const offset = page === 1 ? 0 : ((page! - 1) + limit);
 
     const viewClass = view === ArticleView.SMALL ? cls.SMALL : cls.BIG;
 
     useEffect(() => {
-        dispatch(fetchArticlesList());
-    }, [dispatch]);
+        if (typeof offset === 'number') {
+            dispatch(fetchArticlesList({ offset, limit }));
+            dispatch(articlesListActions.setInitialArticleView());
+        }
+    }, [dispatch, offset, limit]);
 
     return (
         <DynamicModuleLoader reducers={initalReducers}>
+            <ArticleViewButton />
+            <ArticlePageSwitcher />
             <div className={classNames(cls.ArticlesList, {}, [className, viewClass])}>
                 {article?.map((article) => (
                     <ArticleCard

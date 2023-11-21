@@ -5,3 +5,4 @@ export const getArticlesListCount = (state: StateSchema) => state.articlesList?.
 export const getArticlesListIsLoading = (state: StateSchema) => state.articlesList?.isLoading;
 export const getArticlesListError = (state: StateSchema) => state.articlesList?.error;
 export const getArticleListView = (state: StateSchema) => state.articlesList?.view;
+export const getArticleListPage = (state: StateSchema) => state.articlesList?.page;
