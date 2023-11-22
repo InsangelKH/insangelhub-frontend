@@ -1,5 +1,5 @@
 import { ArticleType } from 'entities/Article/model/types/article';
-import { memo } from 'react';
+import { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { SERVER_URL } from 'shared/api/api';
 import { RoutePath } from 'shared/config/routeConfig/routeConfig';
@@ -45,9 +45,9 @@ export const ArticleCard = memo((props: ArticleCardProps) => {
 
     const navigate = useNavigate();
 
-    const onNavigate = (slug: string) => {
+    const onNavigate = useCallback(() => {
         navigate(`${RoutePath.article_details}${slug}`);
-    };
+    }, [navigate, slug]);
 
     if (articleView === ArticleView.BIG) {
         return (
@@ -84,7 +84,7 @@ export const ArticleCard = memo((props: ArticleCardProps) => {
                 </div>
                 <Button
                     className={cls.btnBig}
-                    onClick={() => onNavigate(slug!)}
+                    onClick={() => onNavigate()}
                 >
                     {t('read more')}
                 </Button>
@@ -95,7 +95,7 @@ export const ArticleCard = memo((props: ArticleCardProps) => {
     return (
         <div
             className={classNames(cls.cardSmall, {}, [className])}
-            onClick={() => onNavigate(slug!)}
+            onClick={() => onNavigate()}
         >
             <img
                 src={`${SERVER_URL}/images/${image}`}

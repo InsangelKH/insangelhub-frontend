@@ -2,7 +2,7 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
 import { memo } from 'react';
 import { Page } from 'shared/ui/Page/Page';
-import { Article } from 'entities/Article/ui/Article';
+import { Article } from 'entities/Article/ui/Article/Article';
 import { useParams } from 'react-router-dom';
 import cls from './ArticleDetailsPage.module.scss';
 

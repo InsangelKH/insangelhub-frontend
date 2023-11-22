@@ -1,0 +1,32 @@
+.Article {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.backBtn {
+    width: 10%;
+}
+
+.types {
+    display: flex;
+    gap: 5px;
+}
+
+.type {
+    padding: 5px 10px;
+    border: 2px solid var(--primary-color);
+    border-radius: 10px;
+}
+
+@media screen and (max-width: 748px) {
+    .backBtn {
+        width: 30%;
+    }
+}
