@@ -6,14 +6,16 @@ import { useSelector } from 'react-redux';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { DynamicModuleLoader, ReducersList } from 'shared/lib/components/DynamicModuleLoader';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDisptach';
-import { getArticleListView, getArticlesList } from '../../model/selectors/articlesListSelectors';
+import { getArticleListView, getArticlesList, getArticlesListIsLoading } from '../../model/selectors/articlesListSelectors';
 import { fetchArticlesList } from '../../model/services/fetchArticlesList';
 import { articlesListActions, articlesListReducer } from '../../model/slice/articlesListSlice';
 import { ArticleView } from '../../model/types/articlesList';
 import { ArticleCard } from '../ArticleCard/ArticleCard';
+import { ArticleListIsLoading } from '../ArticleListIsLoading/ArticleListIsLoading';
 import { ArticlePageSwitcher } from '../ArticlePageSwitcher/ArticlePageSwitcher';
 import { ArticleViewButton } from '../ArticleView/ArticleViewButton';
 import cls from './ArticlesList.module.scss';
+import { ArticleListError } from '../ArticleListError/ArticleListError';
 
 interface ArticlesListProps {
     className?: string;
@@ -32,6 +34,7 @@ export const ArticlesList = memo((props: ArticlesListProps) => {
 
     const dispatch = useAppDispatch();
     const article = useSelector(getArticlesList);
+    const isLoading = useSelector(getArticlesListIsLoading);
     const view = useSelector(getArticleListView);
     const page = useSelector(getUserPage);
     const limit = view === ArticleView.SMALL ? 8 : 4;
@@ -49,6 +52,22 @@ export const ArticlesList = memo((props: ArticlesListProps) => {
             dispatch(articlesListActions.setInitialArticleView());
         }
     }, [dispatch, offset, limit, page]);
+
+    if (isLoading) {
+        return (
+            <DynamicModuleLoader reducers={initalReducers}>
+                <ArticleListIsLoading view={view} />
+            </DynamicModuleLoader>
+        );
+    }
+
+    if (article?.length === 0) {
+        return (
+            <DynamicModuleLoader reducers={initalReducers}>
+                <ArticleListError />
+            </DynamicModuleLoader>
+        );
+    }
 
     return (
         <DynamicModuleLoader reducers={initalReducers}>

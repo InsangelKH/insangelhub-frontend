@@ -4,3 +4,9 @@
     flex-direction: column;
     gap: 20px;
 }
+
+@media screen and (max-width: 748px) {
+    .ArticlesPage {
+        padding: 15px;
+    }
+}

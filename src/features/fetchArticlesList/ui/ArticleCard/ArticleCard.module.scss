@@ -20,6 +20,7 @@
     width: 100%;
     height: 160px;
     border-radius: 5px;
+    object-fit: cover;
 }
 
 .typeSmall {
@@ -38,6 +39,12 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+@media screen and (max-width: 748px) {
+    .cardSmall {
+        width: 100%;
+    }
 }
 
 // BIG CARD
@@ -90,4 +97,53 @@
 
 .btnBig {
     width: 150px;
+}
+
+@media screen and (max-width: 748px) {
+    .cardBig {
+        gap: 10px;
+    }
+
+    .avatarBig {
+        width: 30px;
+        height: 30pxa;
+    }
+
+    .authorBig {
+        display: none;
+    }
+    
+    .dateBig {
+        font-size: var(--font-size-s);
+    }
+
+    .titleBig {
+        font-size: var(--font-size-m);
+    }
+
+    .subtitleBig {
+        display: none;
+    }
+
+    .imageBig {
+        height: 150px;
+    }
+
+    .typeBig {
+        font-size: var(--font-size-s);
+    }
+
+    .textBig {
+        font-size: var(--font-size-s);
+        -webkit-line-clamp: 2;
+    }
+
+    .btnBig {
+        font-size: var(--font-size-s);
+        width: 100px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center; 
+    }
 }
