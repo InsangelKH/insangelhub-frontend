@@ -9,3 +9,17 @@
     flex-direction: column;
     gap: 20px;
 }
+
+.dropDownEng {
+    border: 2px solid var(--primary-color);
+    border-radius: 5px;
+    padding: 5px;
+    width: 86px;
+}
+
+.dropDownRu {
+    border: 2px solid var(--primary-color);
+    border-radius: 5px;
+    padding: 5px;
+    width: 145px;
+}

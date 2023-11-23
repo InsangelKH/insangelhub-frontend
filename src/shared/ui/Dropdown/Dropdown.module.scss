@@ -1,0 +1,19 @@
+.Dropdown {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.closed {
+    display: none;
+}
+
+.dropDownOption {
+    text-align: center;
+    border-top: 1px solid var(--primary-color);
+    cursor: pointer;
+
+    &:hover {
+        background: var(--card)
+    }
+}

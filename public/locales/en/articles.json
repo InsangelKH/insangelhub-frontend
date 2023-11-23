@@ -3,5 +3,8 @@
   "read more": "Read more",
   "Back": "Back",
   "article error": "Article was not found or server error",
-  "article list error": "Articles were not found or server error"
+  "article list error": "Articles were not found or server error",
+  "Sort by": "Sorty by",
+  "ASC": "ASC",
+  "DESC": "DESC"
 }

@@ -1,7 +1,7 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { Article } from 'entities/Article/model/types/article';
 import { VIEW_LOCAL_STORAGE_KEY } from 'shared/consts/localstorage';
-import { ArticleView, ArticlesListSchema } from '../types/articlesList';
+import { ArticleView, ArticlesListSchema, SortType } from '../types/articlesList';
 import { fetchArticlesList } from '../services/fetchArticlesList';
 
 const initialState: ArticlesListSchema = {
@@ -23,6 +23,9 @@ export const articlesListSlice = createSlice({
         setArticleView: (state) => {
             state.view = state.view === ArticleView.SMALL ? ArticleView.BIG : ArticleView.SMALL;
             localStorage.setItem(VIEW_LOCAL_STORAGE_KEY, state.view);
+        },
+        setArticleListSort: (state, action: PayloadAction<string>) => {
+            state.sort = action.payload;
         },
     },
     extraReducers: (builder) => {

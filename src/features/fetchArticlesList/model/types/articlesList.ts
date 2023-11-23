@@ -5,10 +5,13 @@ export enum ArticleView {
     SMALL = 'SMALL'
 }
 
+export type SortType = 'ASC' | 'DESC';
+
 export interface ArticlesListSchema {
     articlesList?: Article[];
     articlesCount?: number;
+    view?: ArticleView;
+    sort?: string;
     isLoading?: boolean;
     error?: string;
-    view?: ArticleView;
 }

@@ -21,8 +21,13 @@ export const ArticleListIsLoading = memo((props: ArticleListIsLoadingProps) => {
     if (view === ArticleView.BIG) {
         return (
             <div className={classNames(cls.isLoadingBig, {}, [className])}>
-                {arrayBig.map((component) => (
-                    <Skeleton width="100%" height={350} border="15px" />
+                {arrayBig.map((component, index) => (
+                    <Skeleton
+                        width="100%"
+                        height={350}
+                        border="15px"
+                        key={index}
+                    />
                 ))}
             </div>
         );
@@ -30,8 +35,13 @@ export const ArticleListIsLoading = memo((props: ArticleListIsLoadingProps) => {
 
     return (
         <div className={classNames(cls.ArticleListIsLoading, {}, [className])}>
-            {arraySmall.map((component) => (
-                <Skeleton width={200} height={250} border="15px" />
+            {arraySmall.map((component, index) => (
+                <Skeleton
+                    width={200}
+                    height={250}
+                    border="15px"
+                    key={index}
+                />
             ))}
         </div>
     );
