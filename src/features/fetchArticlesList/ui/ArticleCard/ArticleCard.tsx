@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router';
 import { formattedDate } from 'shared/lib/date/date';
 import { ArticleView } from '../../model/types/articlesList';
 import cls from './ArticleCard.module.scss';
+import { ArticleListIsLoading } from '../ArticleListIsLoading/ArticleListIsLoading';
 
 interface ArticleCardProps {
     className?: string;

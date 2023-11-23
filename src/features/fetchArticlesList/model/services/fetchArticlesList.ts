@@ -5,7 +5,12 @@ import { articlesListActions } from '../slice/articlesListSlice';
 
 export const fetchArticlesList = createAsyncThunk<
     {articles: Article[], articlesCount: number},
-    { offset: number, limit: number},
+    {
+        offset: number,
+        limit: number,
+        sortBy?: string,
+        sort?: string,
+    },
     ThunkConfig<string>
 >(
     'articlesListSlice/fetchArticlesList',
@@ -14,11 +19,15 @@ export const fetchArticlesList = createAsyncThunk<
             extra, dispatch, rejectWithValue,
         } = thunkApi;
 
+        const sortBy = 'createdAt';
+
         try {
             const response = await extra.api.get('/articles', {
                 params: {
                     offset: authData.offset,
                     limit: authData.limit,
+                    sortBy,
+                    sort: authData.sort,
                 },
             });
 

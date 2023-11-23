@@ -1,14 +1,13 @@
 import { TextBlock } from 'entities/Article/model/types/article';
 import { getUserPage } from 'entities/User/model/selectors/userSelectors';
 import {
-    memo, useCallback, useEffect,
+    memo,
+    useEffect,
 } from 'react';
-import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { DynamicModuleLoader, ReducersList } from 'shared/lib/components/DynamicModuleLoader';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDisptach';
-import { Dropdown } from 'shared/ui/Dropdown/Dropdown';
 import {
     getArticleListSort, getArticleListView, getArticlesList, getArticlesListIsLoading,
 } from '../../model/selectors/articlesListSelectors';
@@ -19,8 +18,8 @@ import { ArticleCard } from '../ArticleCard/ArticleCard';
 import { ArticleListError } from '../ArticleListError/ArticleListError';
 import { ArticleListIsLoading } from '../ArticleListIsLoading/ArticleListIsLoading';
 import { ArticlePageSwitcher } from '../ArticlePageSwitcher/ArticlePageSwitcher';
-import { ArticleViewButton } from '../ArticleView/ArticleViewButton';
 import cls from './ArticlesList.module.scss';
+import { ArticleListButtons } from '../ArticleListButtons/ArticleListButtons';
 
 interface ArticlesListProps {
     className?: string;
@@ -34,8 +33,6 @@ export const ArticlesList = memo((props: ArticlesListProps) => {
     const {
         className,
     } = props;
-
-    const { t, i18n } = useTranslation('articles');
 
     const dispatch = useAppDispatch();
     const article = useSelector(getArticlesList);
@@ -52,32 +49,12 @@ export const ArticlesList = memo((props: ArticlesListProps) => {
 
     const viewClass = view === ArticleView.SMALL ? cls.SMALL : cls.BIG;
 
-    const dropDownEng = i18n.language === 'en';
-    const dropDownRu = i18n.language === 'ru';
-    const dropDownMods = {
-        [cls.dropDownEng]: dropDownEng,
-        [cls.dropDownRu]: dropDownRu,
-    };
-    const defaultDropValue = t('Sort by');
-    const dropDownOptions = [t('ASC'), t('DESC')];
-    const handleSortChange = useCallback((value: string) => {
-        dispatch(articlesListActions.setArticleListSort(value));
-    }, [dispatch]);
-
     useEffect(() => {
         if (typeof offset === 'number') {
-            dispatch(fetchArticlesList({ offset, limit }));
+            dispatch(fetchArticlesList({ offset, limit, sort }));
             dispatch(articlesListActions.setInitialArticleView());
         }
-    }, [dispatch, offset, limit, page]);
-
-    if (isLoading) {
-        return (
-            <DynamicModuleLoader reducers={initalReducers}>
-                <ArticleListIsLoading view={view} />
-            </DynamicModuleLoader>
-        );
-    }
+    }, [dispatch, offset, limit, page, sort]);
 
     if (article?.length === 0) {
         return (
@@ -89,16 +66,10 @@ export const ArticlesList = memo((props: ArticlesListProps) => {
 
     return (
         <DynamicModuleLoader reducers={initalReducers}>
-            <ArticleViewButton />
-            <Dropdown
-                className={classNames('', dropDownMods, [])}
-                defaultValue={defaultDropValue}
-                options={dropDownOptions}
-                onChange={handleSortChange}
-            />
+            <ArticleListButtons />
             <ArticlePageSwitcher />
             <div className={classNames(cls.ArticlesList, {}, [className, viewClass])}>
-                {article?.map((article) => (
+                {!isLoading && article?.map((article) => (
                     <ArticleCard
                         key={article.id}
                         avatar={article.author.image}
@@ -115,6 +86,7 @@ export const ArticlesList = memo((props: ArticlesListProps) => {
                         slug={article.slug}
                     />
                 ))}
+                {isLoading && <ArticleListIsLoading view={view} />}
             </div>
         </DynamicModuleLoader>
     );

@@ -23,6 +23,12 @@ export const Dropdown = memo((props: DropdownProps) => {
     const [isClosed, setIsClosed] = useState(true);
     const [selectedOption, setSelectedOption] = useState('');
     const dropdownRef = useRef<HTMLDivElement>(null);
+    const [contentHeight, setContentHeight] = useState<number | null>(null);
+
+    const optionsMods = {
+        [cls.closed]: isClosed,
+        [cls.opened]: !isClosed,
+    };
 
     const handleSelect = useCallback((option: string) => {
         onChange?.(option);
@@ -66,7 +72,7 @@ export const Dropdown = memo((props: DropdownProps) => {
                 {selectedOption || defaultValue}
             </Button>
             <div
-                className={classNames('', { [cls.closed]: isClosed }, [])}
+                className={classNames(cls.options, optionsMods, [])}
             >
                 {options.map((option, index) => (
                     <div
