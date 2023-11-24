@@ -6,6 +6,7 @@ import { fetchArticlesList } from '../services/fetchArticlesList';
 
 const initialState: ArticlesListSchema = {
     type: 'ALL',
+    offset: 0,
 };
 
 export const articlesListSlice = createSlice({
@@ -30,6 +31,12 @@ export const articlesListSlice = createSlice({
         },
         setArticlesListType: (state, action: PayloadAction<ArticleType>) => {
             state.type = action.payload;
+        },
+        setArticlesListOffset: (state, action: PayloadAction<number>) => {
+            state.offset = action.payload;
+        },
+        setArticlesListSearch: (state, action: PayloadAction<string>) => {
+            state.search = action.payload;
         },
     },
     extraReducers: (builder) => {

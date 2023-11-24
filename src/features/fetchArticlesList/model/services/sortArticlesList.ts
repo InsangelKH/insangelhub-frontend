@@ -2,34 +2,39 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from 'app/providers/StoreProvider';
 import { Article } from 'entities/Article/model/types/article';
 import { articlesListActions } from '../slice/articlesListSlice';
-import { getArticlesListView } from '../selectors/articlesListSelectors';
-import { ArticleView } from '../types/articlesList';
+import { SortType } from '../types/articlesList';
 
-export const fetchArticlesList = createAsyncThunk<
+type ArticleTypeRequest = '' | 'IT' | 'ECONOMICS' | 'LIFE';
+
+export const sortArticlesList = createAsyncThunk<
     {articles: Article[], articlesCount: number},
-    void,
+    {
+        offset?: number;
+        limit?: number;
+        sortBy?: string,
+        sort?: SortType,
+        type?: ArticleTypeRequest,
+        search?: string;
+    },
     ThunkConfig<string>
 >(
-    'articlesListSlice/fetchArticlesList',
-    async (authData, thunkApi) => {
+    'articlesListSlice/sortArticlesList',
+    async (queryParams, thunkApi) => {
         const {
-            extra, dispatch, rejectWithValue, getState,
+            extra, dispatch, rejectWithValue,
         } = thunkApi;
 
-        const view = getArticlesListView(getState());
-        const offset = 0;
-        let limit:number;
-        if (view === ArticleView.BIG) {
-            limit = 4;
-        } else {
-            limit = 8;
-        }
+        const sortBy = 'createdAt';
 
         try {
             const response = await extra.api.get('/articles', {
                 params: {
-                    offset,
-                    limit,
+                    offset: queryParams.offset,
+                    limit: queryParams.limit,
+                    sortBy,
+                    sort: queryParams.sort,
+                    type: queryParams.type,
+                    search: queryParams.search,
                 },
             });
 

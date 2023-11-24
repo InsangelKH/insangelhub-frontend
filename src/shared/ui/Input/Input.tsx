@@ -4,11 +4,18 @@ import cls from './Input.module.scss';
 
 type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange' | 'readOnly'>
 
+export enum InputTheme {
+    DEFAULT = 'default',
+    CLEAR = 'clear',
+}
+
 interface InputProps extends HTMLInputProps{
     className?: string;
     value?: string | number;
     onChange?: (value: string) => void;
     readonly?: boolean;
+    theme?: InputTheme;
+    placeholder?: string;
 }
 
 export const Input = memo((props: InputProps) => {
@@ -18,6 +25,8 @@ export const Input = memo((props: InputProps) => {
         onChange,
         readonly,
         type = 'text',
+        theme = InputTheme.DEFAULT,
+        placeholder,
         ...otherProps
     } = props;
 
@@ -27,11 +36,12 @@ export const Input = memo((props: InputProps) => {
 
     return (
         <input
-            className={classNames(cls.Input, { [cls.readonly]: readonly }, [className])}
+            className={classNames(cls.Input, { [cls.readonly]: readonly }, [className, cls[theme]])}
             value={value}
             type={type}
             onChange={onChangeHandler}
             readOnly={readonly}
+            placeholder={placeholder}
         />
     );
 });

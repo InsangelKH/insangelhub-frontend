@@ -7,5 +7,6 @@
   "Sort by": "Sort by",
   "ASC": "ASC",
   "DESC": "DESC",
-  "article srv error": "Server error, try to reload the page"
+  "article srv error": "Server error, try to reload the page",
+  "search text": "Search by articles..."
 }

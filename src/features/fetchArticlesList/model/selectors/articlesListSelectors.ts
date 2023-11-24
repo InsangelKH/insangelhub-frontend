@@ -7,3 +7,5 @@ export const getArticlesListError = (state: StateSchema) => state.articlesList?.
 export const getArticlesListView = (state: StateSchema) => state.articlesList?.view;
 export const getArticlesListSort = (state: StateSchema) => state.articlesList?.sort;
 export const getArticlesListType = (state: StateSchema) => state.articlesList?.type;
+export const getArticlesListSearch = (state: StateSchema) => state.articlesList?.search;
+export const getArticlesListOffset = (state: StateSchema) => state.articlesList?.offset;

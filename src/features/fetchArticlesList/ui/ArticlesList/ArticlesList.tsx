@@ -1,17 +1,13 @@
 import { TextBlock } from 'entities/Article/model/types/article';
-import { getUserPage } from 'entities/User/model/selectors/userSelectors';
-import {
-    memo,
-    useEffect,
-} from 'react';
+import { memo, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { DynamicModuleLoader, ReducersList } from 'shared/lib/components/DynamicModuleLoader';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDisptach';
 import {
-    getArticlesList, getArticlesListError, getArticlesListIsLoading,
-    getArticlesListSort,
-    getArticlesListType,
+    getArticlesList,
+    getArticlesListError,
+    getArticlesListIsLoading,
     getArticlesListView,
 } from '../../model/selectors/articlesListSelectors';
 import { fetchArticlesList } from '../../model/services/fetchArticlesList';
@@ -19,9 +15,10 @@ import { articlesListActions, articlesListReducer } from '../../model/slice/arti
 import { ArticleView } from '../../model/types/articlesList';
 import { ArticleCard } from '../ArticleCard/ArticleCard';
 import { ArticleListButtons } from '../ArticleListButtons/ArticleListButtons';
-import { ArticlesNotFound } from '../ArticlesNotFound/ArticlesNotFound';
 import { ArticleListIsLoading } from '../ArticleListIsLoading/ArticleListIsLoading';
 import { ArticlePageSwitcher } from '../ArticlePageSwitcher/ArticlePageSwitcher';
+import { ArticleSearch } from '../ArticleSearch/ArticleSearch';
+import { ArticlesNotFound } from '../ArticlesNotFound/ArticlesNotFound';
 import cls from './ArticlesList.module.scss';
 
 interface ArticlesListProps {
@@ -42,31 +39,18 @@ export const ArticlesList = memo((props: ArticlesListProps) => {
     const isLoading = useSelector(getArticlesListIsLoading);
     const error = useSelector(getArticlesListError);
     const view = useSelector(getArticlesListView);
-    const page = useSelector(getUserPage);
-    const sort = useSelector(getArticlesListSort);
-    const articleType = useSelector(getArticlesListType);
-    const type = articleType === 'ALL' ? '' : articleType;
-    const limit = view === ArticleView.SMALL ? 8 : 4;
-    let offset: number | undefined;
-
-    if (page !== undefined) {
-        offset = page === 1 ? 0 : ((page - 1) * limit);
-    }
 
     const viewClass = view === ArticleView.SMALL ? cls.SMALL : cls.BIG;
 
     useEffect(() => {
-        if (typeof offset === 'number') {
-            dispatch(fetchArticlesList({
-                offset, limit, sort, type,
-            }));
-            dispatch(articlesListActions.setInitialArticleView());
-        }
-    }, [dispatch, offset, limit, page, sort, type]);
+        dispatch(articlesListActions.setInitialArticleView());
+        dispatch(fetchArticlesList());
+    }, [dispatch]);
 
     return (
         <DynamicModuleLoader reducers={initalReducers}>
             <ArticleListButtons />
+            <ArticleSearch />
             <ArticlePageSwitcher />
             <div className={classNames(cls.ArticlesList, {}, [className, viewClass])}>
                 {error && <ArticlesNotFound />}

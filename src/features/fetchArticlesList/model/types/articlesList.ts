@@ -14,5 +14,7 @@ export interface ArticlesListSchema {
     sort?: SortType;
     isLoading?: boolean;
     error?: string;
+    search?: string;
     type: ArticleType;
+    offset: number;
 }
