@@ -5,10 +5,12 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import { Button, ButtonTheme } from '../Button/Button';
 import cls from './Dropdown.module.scss';
 
+type Option = OptionalRecord<string, string>;
+
 interface DropdownProps {
     className?: string;
     defaultValue: string;
-    options: string[];
+    options: Option[];
     onChange?: (value: string) => void;
 }
 
@@ -23,16 +25,15 @@ export const Dropdown = memo((props: DropdownProps) => {
     const [isClosed, setIsClosed] = useState(true);
     const [selectedOption, setSelectedOption] = useState('');
     const dropdownRef = useRef<HTMLDivElement>(null);
-    const [contentHeight, setContentHeight] = useState<number | null>(null);
 
     const optionsMods = {
         [cls.closed]: isClosed,
         [cls.opened]: !isClosed,
     };
 
-    const handleSelect = useCallback((option: string) => {
+    const handleSelect = useCallback((option: string, value: string) => {
         onChange?.(option);
-        setSelectedOption(option);
+        setSelectedOption(value);
         setIsClosed(true);
     }, [onChange]);
 
@@ -78,9 +79,9 @@ export const Dropdown = memo((props: DropdownProps) => {
                     <div
                         className={cls.dropDownOption}
                         key={index}
-                        onClick={() => handleSelect(option)}
+                        onClick={() => handleSelect(option.key as string, option.value as string)}
                     >
-                        {option}
+                        {option.value}
                     </div>
                 ))}
             </div>

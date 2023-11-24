@@ -11,7 +11,7 @@ import {
     getArticlesListView,
 } from '../../model/selectors/articlesListSelectors';
 import { fetchArticlesList } from '../../model/services/fetchArticlesList';
-import { articlesListActions, articlesListReducer } from '../../model/slice/articlesListSlice';
+import { articlesListReducer } from '../../model/slice/articlesListSlice';
 import { ArticleView } from '../../model/types/articlesList';
 import { ArticleCard } from '../ArticleCard/ArticleCard';
 import { ArticleListButtons } from '../ArticleListButtons/ArticleListButtons';
@@ -43,7 +43,6 @@ export const ArticlesList = memo((props: ArticlesListProps) => {
     const viewClass = view === ArticleView.SMALL ? cls.SMALL : cls.BIG;
 
     useEffect(() => {
-        dispatch(articlesListActions.setInitialArticleView());
         dispatch(fetchArticlesList());
     }, [dispatch]);
 

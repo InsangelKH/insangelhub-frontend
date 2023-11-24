@@ -1,5 +1,6 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { USER_LOCAL_STORAGE_KEY } from 'shared/consts/localstorage';
+import { addQueryParams } from 'shared/lib/addQueryParams/addQueryParams';
 import { User, UserSchema } from '../types/user';
 
 const initialState: UserSchema = {
@@ -31,6 +32,7 @@ export const userSlice = createSlice({
         },
         setArticlePage: (state, action: PayloadAction<number>) => {
             state.page = action.payload;
+            addQueryParams({ page: state.page.toString() });
         },
     },
 });

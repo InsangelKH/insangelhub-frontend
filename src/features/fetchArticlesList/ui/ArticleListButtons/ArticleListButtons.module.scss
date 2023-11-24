@@ -25,3 +25,24 @@
     display: flex;
     gap: 10px;
 }
+
+@media screen and (max-width: 748px) {
+    .ArticleListButtons {
+        flex-direction: column-reverse;
+        gap: 30px;
+        height: auto;
+    }
+
+    .types {
+        flex-wrap: wrap;
+    }
+
+    .type {
+        font-size: var(--font-size-s);
+    }
+
+    .sortView {
+        justify-content: space-between;
+    }
+    
+}

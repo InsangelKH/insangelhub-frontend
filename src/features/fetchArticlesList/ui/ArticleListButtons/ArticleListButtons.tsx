@@ -1,10 +1,13 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
-import { memo, useCallback } from 'react';
+import {
+    memo, useCallback, useEffect, useState,
+} from 'react';
 import { Dropdown } from 'shared/ui/Dropdown/Dropdown';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDisptach';
 import { useSelector } from 'react-redux';
 import { ArticleType } from 'entities/Article/model/types/article';
+import { userActions } from 'entities/User';
 import { articlesListActions } from '../../model/slice/articlesListSlice';
 import {
     getArticlesListOffset, getArticlesListSearch, getArticlesListSort, getArticlesListType, getArticlesListView,
@@ -35,23 +38,39 @@ export const ArticleListButtons = memo((props: ArticleListButtonsProps) => {
     const search = useSelector(getArticlesListSearch);
 
     const defaultDropValue = t('Sort by');
-    const dropDownOptions = [t('ASC'), t('DESC')];
+    const dropDownOptions = [
+        { key: 'ASC', value: t('ASC') as string },
+        { key: 'DESC', value: t('DESC') as string },
+    ];
+    const [dropValue, setDropValue] = useState('');
+
+    useEffect(() => {
+        if (sort !== undefined && sort === 'ASC') {
+            setDropValue(t('ASC'));
+        } else if (sort !== undefined && sort === 'DESC') {
+            setDropValue(t('DESC'));
+        }
+    }, [sort, t]);
+
     const handleSortChange = useCallback((value: string) => {
         dispatch(articlesListActions.setArticlesListSort(value as SortType));
         const type = articleType === 'ALL' ? '' : articleType;
         dispatch(sortArticlesList({
             sort: value as SortType, type, search, offset, limit,
         }));
-    }, [dispatch, limit, offset, search, articleType]);
+    }, [dispatch, articleType, search, offset, limit]);
 
     const types: ArticleType[] = ['ALL', 'IT', 'ECONOMICS', 'LIFE'];
     const onTypeChange = useCallback((articleType: ArticleType) => {
         dispatch(articlesListActions.setArticlesListType(articleType));
+        dispatch(userActions.setArticlePage(1));
+        dispatch(articlesListActions.setArticlesListOffset(0));
+        const offset = 0;
         const type = articleType === 'ALL' ? '' : articleType;
         dispatch(sortArticlesList({
             sort, type, search, offset, limit,
         }));
-    }, [dispatch, limit, offset, search, sort]);
+    }, [dispatch, limit, search, sort]);
 
     return (
         <div className={classNames(cls.ArticleListButtons, {}, [className])}>
@@ -71,7 +90,7 @@ export const ArticleListButtons = memo((props: ArticleListButtonsProps) => {
             <div className={cls.sortView}>
                 <Dropdown
                     className={classNames('', {}, [])}
-                    defaultValue={sort || defaultDropValue}
+                    defaultValue={dropValue || defaultDropValue}
                     options={dropDownOptions}
                     onChange={handleSortChange}
                 />

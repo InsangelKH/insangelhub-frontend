@@ -1,19 +1,20 @@
-import { classNames } from 'shared/lib/classNames/classNames';
-import { useTranslation } from 'react-i18next';
+import { userActions } from 'entities/User';
 import { memo, useCallback } from 'react';
-import { Input, InputTheme } from 'shared/ui/Input/Input';
+import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
+import { classNames } from 'shared/lib/classNames/classNames';
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDisptach';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { Icon } from 'shared/ui/Icon/Icon';
-import { useSelector } from 'react-redux';
-import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDisptach';
-import { articlesListActions } from '../../model/slice/articlesListSlice';
+import { Input, InputTheme } from 'shared/ui/Input/Input';
 import IconSearch from '../../../../shared/assets/icons/icon-search.svg';
-import cls from './ArticleSearch.module.scss';
 import {
-    getArticlesListOffset, getArticlesListSearch, getArticlesListSort, getArticlesListType, getArticlesListView,
+    getArticlesListSearch, getArticlesListSort, getArticlesListType, getArticlesListView,
 } from '../../model/selectors/articlesListSelectors';
 import { sortArticlesList } from '../../model/services/sortArticlesList';
+import { articlesListActions } from '../../model/slice/articlesListSlice';
 import { ArticleView } from '../../model/types/articlesList';
+import cls from './ArticleSearch.module.scss';
 
 interface ArticleSearchProps {
     className?: string;
@@ -32,7 +33,6 @@ export const ArticleSearch = memo((props: ArticleSearchProps) => {
     const sort = useSelector(getArticlesListSort);
     const articleType = useSelector(getArticlesListType);
     const view = useSelector(getArticlesListView);
-    const offset = useSelector(getArticlesListOffset);
     const type = articleType === 'ALL' ? '' : articleType;
     const limit = view === ArticleView.SMALL ? 8 : 4;
 
@@ -41,10 +41,13 @@ export const ArticleSearch = memo((props: ArticleSearchProps) => {
     }, [dispatch]);
 
     const onSearch = useCallback(() => {
+        dispatch(userActions.setArticlePage(1));
+        dispatch(articlesListActions.setArticlesListOffset(0));
+        const offset = 0;
         dispatch(sortArticlesList({
             sort, type, search, offset, limit,
         }));
-    }, [dispatch, limit, offset, search, sort, type]);
+    }, [dispatch, limit, search, sort, type]);
 
     const onEnterPress = useCallback((event: React.KeyboardEvent<HTMLDivElement>) => {
         if (event.key === 'Enter') {
@@ -59,7 +62,7 @@ export const ArticleSearch = memo((props: ArticleSearchProps) => {
         >
             <Input
                 className={cls.input}
-                value={search}
+                value={search || ''}
                 theme={InputTheme.CLEAR}
                 placeholder={placeholder}
                 onChange={onChangeSearch}
