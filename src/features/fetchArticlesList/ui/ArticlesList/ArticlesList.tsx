@@ -9,17 +9,20 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import { DynamicModuleLoader, ReducersList } from 'shared/lib/components/DynamicModuleLoader';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDisptach';
 import {
-    getArticleListSort, getArticleListView, getArticlesList, getArticlesListIsLoading,
+    getArticlesList, getArticlesListError, getArticlesListIsLoading,
+    getArticlesListSort,
+    getArticlesListType,
+    getArticlesListView,
 } from '../../model/selectors/articlesListSelectors';
 import { fetchArticlesList } from '../../model/services/fetchArticlesList';
 import { articlesListActions, articlesListReducer } from '../../model/slice/articlesListSlice';
 import { ArticleView } from '../../model/types/articlesList';
 import { ArticleCard } from '../ArticleCard/ArticleCard';
-import { ArticleListError } from '../ArticleListError/ArticleListError';
+import { ArticleListButtons } from '../ArticleListButtons/ArticleListButtons';
+import { ArticlesNotFound } from '../ArticlesNotFound/ArticlesNotFound';
 import { ArticleListIsLoading } from '../ArticleListIsLoading/ArticleListIsLoading';
 import { ArticlePageSwitcher } from '../ArticlePageSwitcher/ArticlePageSwitcher';
 import cls from './ArticlesList.module.scss';
-import { ArticleListButtons } from '../ArticleListButtons/ArticleListButtons';
 
 interface ArticlesListProps {
     className?: string;
@@ -37,9 +40,12 @@ export const ArticlesList = memo((props: ArticlesListProps) => {
     const dispatch = useAppDispatch();
     const article = useSelector(getArticlesList);
     const isLoading = useSelector(getArticlesListIsLoading);
-    const view = useSelector(getArticleListView);
+    const error = useSelector(getArticlesListError);
+    const view = useSelector(getArticlesListView);
     const page = useSelector(getUserPage);
-    const sort = useSelector(getArticleListSort);
+    const sort = useSelector(getArticlesListSort);
+    const articleType = useSelector(getArticlesListType);
+    const type = articleType === 'ALL' ? '' : articleType;
     const limit = view === ArticleView.SMALL ? 8 : 4;
     let offset: number | undefined;
 
@@ -51,24 +57,19 @@ export const ArticlesList = memo((props: ArticlesListProps) => {
 
     useEffect(() => {
         if (typeof offset === 'number') {
-            dispatch(fetchArticlesList({ offset, limit, sort }));
+            dispatch(fetchArticlesList({
+                offset, limit, sort, type,
+            }));
             dispatch(articlesListActions.setInitialArticleView());
         }
-    }, [dispatch, offset, limit, page, sort]);
-
-    if (article?.length === 0) {
-        return (
-            <DynamicModuleLoader reducers={initalReducers}>
-                <ArticleListError />
-            </DynamicModuleLoader>
-        );
-    }
+    }, [dispatch, offset, limit, page, sort, type]);
 
     return (
         <DynamicModuleLoader reducers={initalReducers}>
             <ArticleListButtons />
             <ArticlePageSwitcher />
             <div className={classNames(cls.ArticlesList, {}, [className, viewClass])}>
+                {error && <ArticlesNotFound />}
                 {!isLoading && article?.map((article) => (
                     <ArticleCard
                         key={article.id}
@@ -87,6 +88,9 @@ export const ArticlesList = memo((props: ArticlesListProps) => {
                     />
                 ))}
                 {isLoading && <ArticleListIsLoading view={view} />}
+                {article?.length === 0 && (
+                    <ArticlesNotFound />
+                )}
             </div>
         </DynamicModuleLoader>
     );

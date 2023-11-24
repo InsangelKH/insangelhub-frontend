@@ -1,6 +1,6 @@
 import { User } from 'entities/User';
 
-export type ArticleType = 'IT' | 'ECONOMICS' | 'LIFE';
+export type ArticleType = 'ALL' | 'IT' | 'ECONOMICS' | 'LIFE';
 
 export interface TextBlock {
     type: 'TEXT';

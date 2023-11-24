@@ -3,8 +3,9 @@
   "read more": "Read more",
   "Back": "Back",
   "article error": "Article was not found or server error",
-  "article list error": "Articles were not found or server error",
+  "articles not found": "Articles were not found",
   "Sort by": "Sort by",
   "ASC": "ASC",
-  "DESC": "DESC"
+  "DESC": "DESC",
+  "article srv error": "Server error, try to reload the page"
 }

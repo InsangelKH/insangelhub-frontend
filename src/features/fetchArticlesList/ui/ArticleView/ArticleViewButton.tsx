@@ -6,7 +6,7 @@ import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDisptach';
 import { articlesListActions } from '../../model/slice/articlesListSlice';
 import BigIcon from '../../../../shared/assets/icons/icon-big.svg';
 import SmallIcon from '../../../../shared/assets/icons/icon-small.svg';
-import { getArticleListView } from '../../model/selectors/articlesListSelectors';
+import { getArticlesListView } from '../../model/selectors/articlesListSelectors';
 import cls from './ArticleViewButton.module.scss';
 import { ArticleView } from '../../model/types/articlesList';
 
@@ -21,11 +21,11 @@ export const ArticleViewButton = memo((props: ArticleViewProps) => {
 
     const dispatch = useAppDispatch();
 
-    const view = useSelector(getArticleListView);
+    const view = useSelector(getArticlesListView);
     const viewClass = view === ArticleView.SMALL ? cls.SMALL : cls.BIG;
 
     const onChangeView = useCallback(() => {
-        dispatch(articlesListActions.setArticleView());
+        dispatch(articlesListActions.setArticlesView());
     }, [dispatch]);
 
     return (

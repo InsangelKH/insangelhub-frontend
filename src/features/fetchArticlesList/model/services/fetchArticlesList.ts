@@ -2,6 +2,9 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from 'app/providers/StoreProvider';
 import { Article } from 'entities/Article/model/types/article';
 import { articlesListActions } from '../slice/articlesListSlice';
+import { SortType } from '../types/articlesList';
+
+type ArticleTypeRequest = '' | 'IT' | 'ECONOMICS' | 'LIFE';
 
 export const fetchArticlesList = createAsyncThunk<
     {articles: Article[], articlesCount: number},
@@ -9,7 +12,8 @@ export const fetchArticlesList = createAsyncThunk<
         offset: number,
         limit: number,
         sortBy?: string,
-        sort?: string,
+        sort?: SortType,
+        type?: ArticleTypeRequest,
     },
     ThunkConfig<string>
 >(
@@ -28,6 +32,7 @@ export const fetchArticlesList = createAsyncThunk<
                     limit: authData.limit,
                     sortBy,
                     sort: authData.sort,
+                    type: authData.type,
                 },
             });
 

@@ -1,13 +1,13 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
 import { memo } from 'react';
-import cls from './ArticleListError.module.scss';
+import cls from './ArticlesNotFound.module.scss';
 
 interface ArticleErrorProps {
     className?: string;
 }
 
-export const ArticleListError = memo((props: ArticleErrorProps) => {
+export const ArticlesNotFound = memo((props: ArticleErrorProps) => {
     const {
         className,
     } = props;
@@ -15,8 +15,8 @@ export const ArticleListError = memo((props: ArticleErrorProps) => {
     const { t } = useTranslation('articles');
 
     return (
-        <h1 className={classNames(cls.ArticleListError, {}, [className])}>
-            {t('article list error')}
+        <h1 className={classNames(cls.ArticlesNotFound, {}, [className])}>
+            {t('articles not found')}
         </h1>
     );
 });

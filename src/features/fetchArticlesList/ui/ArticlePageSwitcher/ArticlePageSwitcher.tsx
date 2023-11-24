@@ -4,7 +4,7 @@ import { memo, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDisptach';
-import { getArticleListView, getArticlesListCount } from '../../model/selectors/articlesListSelectors';
+import { getArticlesListView, getArticlesListCount, getArticlesList } from '../../model/selectors/articlesListSelectors';
 import { ArticleView } from '../../model/types/articlesList';
 import cls from './ArticlePageSwitcher.module.scss';
 
@@ -19,7 +19,7 @@ export const ArticlePageSwitcher = memo((props: ArticlePagesProps) => {
 
     const dispatch = useAppDispatch();
 
-    const view = useSelector(getArticleListView);
+    const view = useSelector(getArticlesListView);
     const page = useSelector(getUserPage);
     const totalArticles = useSelector(getArticlesListCount);
     const limit = view === ArticleView.SMALL ? 8 : 4;

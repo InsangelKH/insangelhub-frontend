@@ -1,4 +1,4 @@
-import { Article } from 'entities/Article/model/types/article';
+import { Article, ArticleType } from 'entities/Article/model/types/article';
 
 export enum ArticleView {
     BIG = 'BIG',
@@ -11,7 +11,8 @@ export interface ArticlesListSchema {
     articlesList?: Article[];
     articlesCount?: number;
     view?: ArticleView;
-    sort?: string;
+    sort?: SortType;
     isLoading?: boolean;
     error?: string;
+    type: ArticleType;
 }
