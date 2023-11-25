@@ -4,10 +4,11 @@
     background-color: var(--inverted-bg-color);
     display: flex;
     align-items: center;
-    gap: 25px;
     padding: 20px;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
+
+    justify-content: space-between;
 }
 
 .link {
@@ -42,6 +43,18 @@
 
 .burger {
     margin-left: auto;
+}
+
+.createBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.createIcon {
+    stroke: var(--primary-color);
+    width: 30px;
+    height: 30px;
 }
 
 

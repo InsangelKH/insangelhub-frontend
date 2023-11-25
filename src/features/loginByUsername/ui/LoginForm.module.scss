@@ -38,6 +38,8 @@
 
     .registerWrapper {
         font-size: var(--font-size-m);
+        flex-direction: column;
+        text-align: center;
     }
 }
 

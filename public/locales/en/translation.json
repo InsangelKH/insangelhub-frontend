@@ -15,5 +15,6 @@
   "profile": "Profile",
   "login_nav": "Login",
   "logout": "Logout",
-  "articles": "Articles"
+  "articles": "Articles",
+  "create article": "Create article"
 }
