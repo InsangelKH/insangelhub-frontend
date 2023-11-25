@@ -5,6 +5,7 @@ import { AxiosInstance } from 'axios';
 import { ArticleSchema } from 'entities/Article';
 import { ProfileSchema } from 'entities/Profile';
 import { UserSchema } from 'entities/User/model/types/user';
+import { CreateArticleSchema } from 'features/createArticle';
 import { ArticlesListSchema } from 'features/fetchArticlesList';
 import { LoginSchema } from 'features/loginByUsername';
 import { RegisterSchema } from 'features/registerUser';
@@ -17,6 +18,7 @@ export interface StateSchema {
     profile?: ProfileSchema;
     article?: ArticleSchema;
     articlesList?: ArticlesListSchema;
+    createArticle?: CreateArticleSchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;

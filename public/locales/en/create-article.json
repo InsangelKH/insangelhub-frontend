@@ -1,0 +1,21 @@
+{
+  "articles create": "Create article",
+  "place title": "Type article's title...",
+  "title": "Article's title",
+  "place subtitle": "Type article's subtitle...",
+  "subtitle": "Article's subtitle",
+  "choose article type": "Choose article's type",
+  "create block": "Create article's section",
+  "Choose type": "Choose type",
+  "choose block type": "Choose section's type:",
+  "Create": "Create",
+  "text block": "Text section:",
+  "TEXT": "TEXT",
+  "IMAGE": "IMAGE",
+  "CODE": "CODE",
+  "block title": "Title:",
+  "block subtitle": "Subtitle:",
+  "block paragrpah": "Paragraph:",
+  "add par": "Add",
+  "paragraphs": "Paragraphs:"
+}

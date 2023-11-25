@@ -1,0 +1,14 @@
+.CreateArticleBlocks {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    border: 2px solid var(--primary-color);
+    padding: 15px;
+}
+
+.dropDown {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}

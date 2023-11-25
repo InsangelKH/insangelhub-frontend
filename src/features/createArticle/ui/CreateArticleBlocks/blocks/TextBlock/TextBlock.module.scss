@@ -1,0 +1,77 @@
+.TextBlock {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    border-top: 1px solid var(--primary-color);
+    padding-top: 5px;
+}
+
+.parWrapper {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    width: 100%;
+}
+
+.paragraphs {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.paragraph {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    cursor: pointer;
+
+    &:hover {
+        opacity: 0.7;
+    }
+}
+
+.icon {
+    width: 25px;
+    height: 25px;
+    stroke: var(--primary-color);
+    stroke-width: 2;
+    fill: var(--bg-color);
+}
+
+.blockInput {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.textArea {
+    min-width: 85%;
+    max-width: 85%;
+    min-height: 40px;
+    resize: none;
+
+    background-color: transparent;
+    border: 1px solid var(--primary-color);
+
+    &:focus {
+        border: 2px solid var(--secondary-color);
+        outline: none;
+    }
+}
+
+@media screen and (min-width: 748px) and (max-width: 1270px) {
+    .textArea {
+        min-width: 80%;
+        max-width: 80%;
+    }  
+}
+
+
+@media screen and (max-width: 748px) {
+    .textArea {
+        min-width: 50%;
+        max-width: 50%;
+    }  
+}

@@ -1,0 +1,21 @@
+{
+  "articles create": "Создать статью",
+  "place title": "Введите заголовок статьи...",
+  "title": "Заголовок статьи",
+  "place subtitle": "Введите подзаголовок статьи...",
+  "subtitle": "Подзаголовок статьи",
+  "choose article type": "Выберите тип статьи",
+  "create block": "Создайте раздел статьи",
+  "Choose type": "Выберите тип",
+  "choose block type": "Выберите тип секции:",
+  "Create": "Создать",
+  "text block": "Текстовый раздел:",
+  "TEXT": "ТЕКСТ",
+  "IMAGE": "КАРТИНКА",
+  "CODE": "КОД",
+  "block title": "Заголовок:",
+  "block subtitle": "Подзаголовок:",
+  "block paragrpah": "Параграф:",
+  "add par": "Добавить",
+  "paragraphs": "Параграфы:"
+}
