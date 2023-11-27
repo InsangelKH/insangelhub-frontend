@@ -1,10 +1,17 @@
-import { classNames } from 'shared/lib/classNames/classNames';
-import { useTranslation } from 'react-i18next';
 import {
-    memo, useCallback, useRef, useState,
+    memo, useCallback, useState,
 } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
+import { classNames } from 'shared/lib/classNames/classNames';
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDisptach';
+import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { Dropdown } from 'shared/ui/Dropdown/Dropdown';
-import { Button } from 'shared/ui/Button/Button';
+import { Icon } from 'shared/ui/Icon/Icon';
+import IconClose from '../../../../shared/assets/icons/icon-close.svg';
+import IconDelete from '../../../../shared/assets/icons/icon-delete.svg';
+import { getCreateArticleBlocks, getCreateArticleBlocksToCreate } from '../../model/selectors/createArticleSelectors';
+import { createArticleActions } from '../../model/slice/createArticleSlice';
 import cls from './CreateArticleBlocks.module.scss';
 import { TextBlock } from './blocks/TextBlock/TextBlock';
 
@@ -18,9 +25,11 @@ export const CreateArticleBlocks = memo((props: CreateArticleBlocksProps) => {
     } = props;
 
     const { t } = useTranslation('create-article');
+    const dispatch = useAppDispatch();
 
     const [blockValue, setBlockValue] = useState('');
-    const [blocks, setBlocks] = useState<JSX.Element[]>([]);
+    const blocksData = useSelector(getCreateArticleBlocks);
+    const blocksToCreate = useSelector(getCreateArticleBlocksToCreate);
 
     const onDropDownChange = useCallback((value: string) => {
         setBlockValue(value);
@@ -28,12 +37,22 @@ export const CreateArticleBlocks = memo((props: CreateArticleBlocksProps) => {
 
     const onAddBlock = useCallback(() => {
         if (blockValue !== '' && blockValue === 'TEXT') {
-            setBlocks((prevBlocks) => [
-                ...prevBlocks,
-                <TextBlock />,
-            ]);
+            let newBlockId = 1;
+            if (blocksToCreate?.length && blocksToCreate.length > 0) {
+                const maxId = Math.max(...blocksToCreate.map((block) => block.id));
+                newBlockId = maxId + 1;
+            }
+            dispatch(createArticleActions.setBlockToCreate({ id: newBlockId, type: 'TEXT' }));
         }
-    }, [blockValue]);
+    }, [blockValue, blocksToCreate, dispatch]);
+
+    const onCloseBlock = useCallback((blockId: number) => {
+        dispatch(createArticleActions.removeBlockToCreate(blockId));
+    }, [dispatch]);
+
+    const onRemoveBlockData = useCallback((blockId: number) => {
+        dispatch(createArticleActions.removeArticleBlock(blockId));
+    }, [dispatch]);
 
     const dropDownDefaultValue = t('Choose type');
     const dropDownOptions = [
@@ -45,6 +64,21 @@ export const CreateArticleBlocks = memo((props: CreateArticleBlocksProps) => {
     return (
         <div className={classNames(cls.CreateArticleBlocks, {}, [className])}>
             <h2>{t('create block')}</h2>
+            <div className={cls.blockData}>
+                <p className={cls.blockDataTitle}>{t('blocks')}</p>
+                {blocksData?.map((block, index) => (
+                    <div
+                        className={cls.blockDataWrapper}
+                        key={index}
+                        onClick={() => onRemoveBlockData(block.id)}
+                    >
+                        <div className={cls.blockDataType}>
+                            {block.blockData.type}
+                            <Icon Svg={IconDelete} className={cls.iconDelete} />
+                        </div>
+                    </div>
+                ))}
+            </div>
             <div className={cls.dropDown}>
                 <p>{t('choose block type')}</p>
                 <Dropdown
@@ -59,8 +93,17 @@ export const CreateArticleBlocks = memo((props: CreateArticleBlocksProps) => {
                 </Button>
             </div>
             <div className={cls.blocks}>
-                {blocks.map((block, index) => (
-                    <div key={index}>{block}</div>
+                {blocksToCreate?.map((block) => (
+                    <div key={block.id} className={cls.blockContainer}>
+                        <Button
+                            onClick={() => onCloseBlock(block.id)}
+                            className={cls.closeButton}
+                            theme={ButtonTheme.CLEAR}
+                        >
+                            <Icon Svg={IconClose} className={cls.icon} />
+                        </Button>
+                        {block.type === 'TEXT' && <TextBlock id={block.id} />}
+                    </div>
                 ))}
             </div>
         </div>

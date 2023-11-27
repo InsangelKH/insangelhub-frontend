@@ -16,6 +16,9 @@
   "block title": "Title:",
   "block subtitle": "Subtitle:",
   "block paragrpah": "Paragraph:",
-  "add par": "Add",
-  "paragraphs": "Paragraphs:"
+  "add par": "Add paragraph",
+  "paragraphs": "Paragraphs:",
+  "close block": "Cancel",
+  "save block": "Save",
+  "blocks": "Blocks:"
 }

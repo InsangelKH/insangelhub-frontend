@@ -1,37 +1,39 @@
-import { classNames } from 'shared/lib/classNames/classNames';
-import { useTranslation } from 'react-i18next';
 import {
     ChangeEvent, memo, useCallback, useState,
 } from 'react';
-import { Input } from 'shared/ui/Input/Input';
-import { Button } from 'shared/ui/Button/Button';
-import { TextArea } from 'shared/ui/TextArea/TextArea';
+import { useTranslation } from 'react-i18next';
+import { classNames } from 'shared/lib/classNames/classNames';
+import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { Icon } from 'shared/ui/Icon/Icon';
-import IconDelete from '../../../../../../shared/assets/icons/icon-delete.svg';
+import { Input } from 'shared/ui/Input/Input';
+import { TextArea } from 'shared/ui/TextArea/TextArea';
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDisptach';
+import { BlockType } from 'entities/Article/model/types/article';
+import { createArticleActions } from '../../../../model/slice/createArticleSlice';
 import cls from './TextBlock.module.scss';
+import IconDelete from '../../../../../../shared/assets/icons/icon-delete.svg';
 
 interface TextBlockProps {
     className?: string;
+    id: number;
 }
 
 export const TextBlock = memo((props: TextBlockProps) => {
     const {
         className,
+        id,
     } = props;
 
     const { t } = useTranslation('create-article');
 
+    const dispatch = useAppDispatch();
+
     const [title, setTitle] = useState<string>('');
-    const [subtitle, setSubtitle] = useState<string>('');
     const [paragraph, setParagraph] = useState<string>('');
     const [paragraphs, setParagraphs] = useState<string[]>([]);
 
     const onChangeTitle = useCallback((value: string) => {
         setTitle(value);
-    }, []);
-
-    const onChangeSubtitle = useCallback((value: string) => {
-        setSubtitle(value);
     }, []);
 
     const onChangeParagraph = useCallback((event: ChangeEvent<HTMLTextAreaElement>) => {
@@ -55,6 +57,24 @@ export const TextBlock = memo((props: TextBlockProps) => {
             });
         }
     }, [paragraphs]);
+
+    const onSaveBlock = useCallback(() => {
+        if (title !== '' && paragraphs.length > 0) {
+            const textBlock: BlockType = {
+                type: 'TEXT',
+                title,
+                paragraphs,
+            };
+            dispatch(createArticleActions.setArticleBlock(textBlock));
+            setTitle('');
+            setParagraphs((prevParagraphs) => {
+                const newParagraphs = [...prevParagraphs];
+                newParagraphs.splice(0, newParagraphs.length);
+                return newParagraphs;
+            });
+            dispatch(createArticleActions.removeBlockToCreate(id));
+        }
+    }, [dispatch, id, paragraphs, title]);
 
     return (
         <div className={classNames(cls.TextBlock, {}, [className])}>
@@ -81,15 +101,8 @@ export const TextBlock = memo((props: TextBlockProps) => {
                     onChange={onChangeTitle}
                 />
             </div>
-            <div className={cls.blockInput}>
-                <p>{t('block subtitle')}</p>
-                <Input
-                    value={subtitle}
-                    onChange={onChangeSubtitle}
-                />
-            </div>
-            <div className={cls.blockInput}>
-                <p>{t('block paragrpah')}</p>
+            <div className={cls.blockTextArea}>
+                <p className={cls.paragraphP}>{t('block paragrpah')}</p>
                 <TextArea
                     value={paragraph}
                     onChange={onChangeParagraph}
@@ -97,10 +110,18 @@ export const TextBlock = memo((props: TextBlockProps) => {
                 />
                 <Button
                     onClick={onAddParagraph}
+                    className={cls.paragraphBtn}
                 >
                     {t('add par')}
                 </Button>
             </div>
+            <Button
+                theme={ButtonTheme.BACKGROUND_INVERTED}
+                className={cls.saveBtn}
+                onClick={onSaveBlock}
+            >
+                {t('save block')}
+            </Button>
         </div>
     );
 });

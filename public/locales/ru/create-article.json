@@ -16,6 +16,9 @@
   "block title": "Заголовок:",
   "block subtitle": "Подзаголовок:",
   "block paragrpah": "Параграф:",
-  "add par": "Добавить",
-  "paragraphs": "Параграфы:"
+  "add par": "Добавить параграф",
+  "paragraphs": "Параграфы:",
+  "close block": "Отменить",
+  "save block": "Сохранить",
+  "blocks": "Блоки:"
 }

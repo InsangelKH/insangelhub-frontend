@@ -4,7 +4,7 @@
     gap: 10px;
 
     border-top: 1px solid var(--primary-color);
-    padding-top: 5px;
+    padding-top: 10px;
 }
 
 .parWrapper {
@@ -46,10 +46,22 @@
     align-items: center;
 }
 
+.blockTextArea {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-direction: column;
+}
+
+.paragraphP {
+    margin-right: auto;
+}
+
 .textArea {
-    min-width: 85%;
-    max-width: 85%;
-    min-height: 40px;
+    min-width: 100%;
+    max-width: 100%;
+    min-height: 150px;
+    padding: 5px;
     resize: none;
 
     background-color: transparent;
@@ -61,17 +73,21 @@
     }
 }
 
-@media screen and (min-width: 748px) and (max-width: 1270px) {
-    .textArea {
-        min-width: 80%;
-        max-width: 80%;
-    }  
+.paragraphBtn {
+    margin-left: auto;
 }
 
+
+.saveBtn {
+    margin-top: 20px;
+    width: 30%;
+    margin: 0 auto;
+}
 
 @media screen and (max-width: 748px) {
-    .textArea {
-        min-width: 50%;
-        max-width: 50%;
-    }  
+    .saveBtn {
+        margin-top: 40px;
+        width: 70%;
+    }
 }
+
