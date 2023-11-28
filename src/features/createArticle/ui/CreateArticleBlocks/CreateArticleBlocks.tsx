@@ -14,6 +14,7 @@ import { getCreateArticleBlocks, getCreateArticleBlocksToCreate } from '../../mo
 import { createArticleActions } from '../../model/slice/createArticleSlice';
 import cls from './CreateArticleBlocks.module.scss';
 import { TextBlock } from './blocks/TextBlock/TextBlock';
+import { ImageBlock } from './blocks/ImageBlock/ImageBlock';
 
 interface CreateArticleBlocksProps {
     className?: string;
@@ -36,13 +37,19 @@ export const CreateArticleBlocks = memo((props: CreateArticleBlocksProps) => {
     }, []);
 
     const onAddBlock = useCallback(() => {
+        let newBlockId = 1;
         if (blockValue !== '' && blockValue === 'TEXT') {
-            let newBlockId = 1;
             if (blocksToCreate?.length && blocksToCreate.length > 0) {
                 const maxId = Math.max(...blocksToCreate.map((block) => block.id));
                 newBlockId = maxId + 1;
             }
             dispatch(createArticleActions.setBlockToCreate({ id: newBlockId, type: 'TEXT' }));
+        } else if (blockValue !== '' && blockValue === 'IMAGE') {
+            if (blocksToCreate?.length && blocksToCreate.length > 0) {
+                const maxId = Math.max(...blocksToCreate.map((block) => block.id));
+                newBlockId = maxId + 1;
+            }
+            dispatch(createArticleActions.setBlockToCreate({ id: newBlockId, type: 'IMAGE' }));
         }
     }, [blockValue, blocksToCreate, dispatch]);
 
@@ -103,6 +110,7 @@ export const CreateArticleBlocks = memo((props: CreateArticleBlocksProps) => {
                             <Icon Svg={IconClose} className={cls.icon} />
                         </Button>
                         {block.type === 'TEXT' && <TextBlock id={block.id} />}
+                        {block.type === 'IMAGE' && <ImageBlock id={block.id} />}
                     </div>
                 ))}
             </div>

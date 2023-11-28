@@ -20,5 +20,12 @@
   "paragraphs": "Paragraphs:",
   "close block": "Cancel",
   "save block": "Save",
-  "blocks": "Blocks:"
+  "blocks": "Blocks:",
+  "choose image": "Choose article's image",
+  "set image": "Set image",
+  "cancel image": "Cancel",
+  "send article": "Create article",
+  "image block": "Image section",
+  "set image block": "Choose image",
+  "image": "Image:"
 }

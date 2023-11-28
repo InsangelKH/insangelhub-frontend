@@ -20,5 +20,12 @@
   "paragraphs": "Параграфы:",
   "close block": "Отменить",
   "save block": "Сохранить",
-  "blocks": "Блоки:"
+  "blocks": "Блоки:",
+  "choose image": "Выберите картинку статьи",
+  "set image": "Назначьте изображние",
+  "cancel image": "Отменить",
+  "send article": "Создать статью",
+  "image block": "Раздел картинки",
+  "set image block": "Выберите картинку",
+  "image": "Картинка:"
 }

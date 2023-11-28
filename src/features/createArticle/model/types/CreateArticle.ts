@@ -16,6 +16,9 @@ export interface CreateArticleSchema {
     types: ArticleType[];
     blocks: BlocksDataInterface[];
     blocksToCreate: BlocksToCreateInterface[];
+    imageFile?: File;
+    files: File[];
+    image?: string;
     isLoading?: boolean;
     error?: string;
 }

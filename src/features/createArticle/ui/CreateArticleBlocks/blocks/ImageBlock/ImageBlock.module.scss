@@ -1,0 +1,45 @@
+.ImageBlock {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    border-top: 1px solid var(--primary-color);
+    padding-top: 10px;
+}
+
+.blockInput {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.imageField {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.imageToSend {
+    display: flex;
+    gap: 10px;
+    cursor: pointer;
+
+    &:hover {
+        opacity: 0.7;
+    }
+}
+
+.icon {
+    width: 25px;
+    height: 25px;
+    stroke: var(--primary-color);
+    stroke-width: 2;
+    fill: var(--bg-color);
+}
+
+
+.saveBtn {
+    margin-top: 20px;
+    width: 30%;
+    margin: 0 auto;
+}
