@@ -11,6 +11,9 @@ export const articleSlice = createSlice({
         setArticle: (state, action: PayloadAction<{ article: Article }>) => {
             state.article = { ...action.payload.article };
         },
+        setIsDeleted: (state, action: PayloadAction<boolean>) => {
+            state.isDeleted = action.payload;
+        },
     },
     extraReducers: (builder) => {
         builder

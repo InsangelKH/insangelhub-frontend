@@ -11,7 +11,6 @@ import {
 } from '../../../../entities/Profile/model/selectors/profileSelectors';
 import { fetchProfileData } from '../../../../entities/Profile/model/services/fetchProfileData';
 import { profileReducer } from '../../../../entities/Profile/model/slice/profileSlice';
-import DefaultAvatar from '../../../../shared/assets/pictures/default-avatar.png';
 import { ProfileAvatar } from '../ProfileAvatar/ProfileAvatar';
 import { ProfileData } from '../ProfileData/ProfileData';
 import { ProfileHeader } from '../ProfileHeader/ProfileHeader';
@@ -40,13 +39,7 @@ export const Profile = memo((props: ProfileProps) => {
     const isLoading = useSelector(getProfileIsLoading);
     const error = useSelector(getProfileError);
 
-    let avatar: string;
-
-    if (profile?.image === '') {
-        avatar = DefaultAvatar;
-    } else {
-        avatar = `${SERVER_URL}/images/${profile?.image}`;
-    }
+    const avatar = `${SERVER_URL}/images/${profile?.image}`;
 
     const imageFile = useSelector(getProfileImageFile);
     let imageSrc;

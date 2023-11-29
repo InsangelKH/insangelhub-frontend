@@ -5,7 +5,12 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import { DynamicModuleLoader, ReducersList } from 'shared/lib/components/DynamicModuleLoader';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDisptach';
 import { Button } from 'shared/ui/Button/Button';
-import { getArticle, getArticleError, getArticleIsLoading } from '../../model/selectors/articleSelectors';
+import { getUserData } from 'entities/User/model/selectors/userSelectors';
+import { Navigate } from 'react-router';
+import { RoutePath } from 'shared/config/routeConfig/routeConfig';
+import {
+    getArticle, getArticleError, getArticleIsDeleted, getArticleIsLoading,
+} from '../../model/selectors/articleSelectors';
 import { getArticleBySlug } from '../../model/services/getArticleBySlug';
 import { articleReducer } from '../../model/slice/articleSlice';
 import { ArticleTitle } from '../ArticleTitle/ArticleTitle';
@@ -15,6 +20,7 @@ import { ArticleTextBlock } from '../ArticleTextBlock/ArticleTextBlock';
 import { ArticleCodeBlock } from '../ArticleCodeBlock/ArticleCodeBlock';
 import { ArticleIsLoading } from '../ArticleIsLoading/ArticleIsLoading';
 import { ArticleError } from '../ArticleError/ArticleError';
+import { ArticleControlls } from '../ArticleControlls/ArticleControlls';
 
 interface ArticleProps {
     className?: string;
@@ -31,13 +37,17 @@ export const Article = memo((props: ArticleProps) => {
         slug,
     } = props;
 
-    const { t } = useTranslation('articles');
+    const { t } = useTranslation();
 
     const dispatch = useAppDispatch();
 
     const article = useSelector(getArticle);
     const isLoading = useSelector(getArticleIsLoading);
     const error = useSelector(getArticleError);
+    const isDeleted = useSelector(getArticleIsDeleted);
+
+    const userData = useSelector(getUserData);
+    const allowedToEdit = userData?.role === 'ADMIN' || userData?.id === article?.author.id;
 
     const onBack = useCallback(() => {
         window.history.back();
@@ -51,6 +61,14 @@ export const Article = memo((props: ArticleProps) => {
         return (
             <DynamicModuleLoader reducers={initalReducers}>
                 <ArticleIsLoading />
+            </DynamicModuleLoader>
+        );
+    }
+
+    if (isDeleted) {
+        return (
+            <DynamicModuleLoader reducers={initalReducers}>
+                <Navigate to={RoutePath.articles} />
             </DynamicModuleLoader>
         );
     }
@@ -86,6 +104,7 @@ export const Article = memo((props: ArticleProps) => {
                         </div>
                     </div>
                     <ArticleTitle article={article} />
+                    {allowedToEdit && <ArticleControlls slug={slug} />}
                     {article?.blocks.map((block, index) => {
                         if (block.type === 'TEXT') {
                             return <ArticleTextBlock key={index} block={block} />;

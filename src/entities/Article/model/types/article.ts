@@ -38,4 +38,5 @@ export interface ArticleSchema {
     article?: Article;
     isLoading?: boolean;
     error?: string;
+    isDeleted?: boolean;
 }

@@ -33,3 +33,10 @@
     color: var(--inverted-primary-color);
     border: none;
 }
+
+.danger {
+    background: rgb(204, 42, 42);
+    border-radius: 20px;
+    color: #F4F5FB;
+    border: 2px solid var(--primary-color);
+}

@@ -56,7 +56,7 @@ export const RegisterForm = memo((props: RegisterFormProps) => {
     ), [dispatch]);
 
     const onRegisterClick = useCallback(() => {
-        if (isEmailValid(email) && password && !isUsernameValid(username)) {
+        if (isEmailValid(email) && password && isUsernameValid(username)) {
             dispatch(registerUser({ email, username, password }));
             setEmailEmpty(false);
             setUsernameEmpty(false);

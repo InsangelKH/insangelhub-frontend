@@ -8,5 +8,7 @@
   "ASC": "ASC",
   "DESC": "DESC",
   "article srv error": "Server error, try to reload the page",
-  "search text": "Search by articles..."
+  "search text": "Search by articles...",
+  "Delete": "Delete",
+  "Update": "Edit"
 }

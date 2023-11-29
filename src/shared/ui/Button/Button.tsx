@@ -8,6 +8,7 @@ export enum ButtonTheme {
     CLEAR = 'clear',
     CLEAR_INVERTED = 'clear_inverted',
     NONE = 'none',
+    DANGER = 'danger',
 }
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
