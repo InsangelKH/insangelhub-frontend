@@ -10,3 +10,5 @@ export const getCreateArticleError = (state: StateSchema) => state.createArticle
 export const getCreateArticleImageFile = (state: StateSchema) => state.createArticle?.imageFile;
 export const getCreateArticleImage = (state: StateSchema) => state.createArticle?.image;
 export const getCreateArticleFiles = (state: StateSchema) => state.createArticle?.files;
+export const getCreateArticleResponse = (state:StateSchema) => state.createArticle?.articleResponse;
+export const getCreateArticleEmptyFieldError = (state: StateSchema) => state.createArticle?.emptyFieldError;

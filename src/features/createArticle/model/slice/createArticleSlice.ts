@@ -1,5 +1,7 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { ArticleType, BlockType, ImageBlock } from 'entities/Article/model/types/article';
+import {
+    Article, ArticleType, BlockType, ImageBlock,
+} from 'entities/Article/model/types/article';
 import { BlocksToCreateInterface, CreateArticleSchema } from '../types/CreateArticle';
 import { createArticleAsync } from '../services/createArticleAsync';
 
@@ -90,6 +92,12 @@ export const createArticleSlice = createSlice({
         },
         removeArticleImage: (state) => {
             state.image = undefined;
+        },
+        setArticleResponse: (state, action: PayloadAction<{ article: Article }>) => {
+            state.articleResponse = { ...action.payload.article };
+        },
+        setArticleEmptyFieldError: (state, action: PayloadAction<boolean>) => {
+            state.emptyFieldError = action.payload;
         },
     },
     extraReducers: (builder) => {

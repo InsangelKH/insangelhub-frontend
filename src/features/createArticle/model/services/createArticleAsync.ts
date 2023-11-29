@@ -2,6 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from 'app/providers/StoreProvider';
 import { Article } from 'entities/Article';
 import { CreateArticleSchema } from '../types/CreateArticle';
+import { createArticleActions } from '../slice/createArticleSlice';
 
 type CreateArticleResponseType = Omit<CreateArticleSchema, 'blocksToCreate'>;
 
@@ -39,11 +40,14 @@ export const createArticleAsync = createAsyncThunk<
                     formData.append(`blocks[${index}][title]`, block.blockData.title);
                     formData.append(`blocks[${index}][src]`, block.blockData.src);
                 }
+                if (block.blockData.type === 'CODE') {
+                    formData.append(`blocks[${index}][code]`, block.blockData.code);
+                }
             });
         }
 
         if (Array.isArray(articleData.files)) {
-            articleData.files.forEach((file, index) => {
+            articleData.files.forEach((file) => {
                 formData.append('image', file);
             });
         }
@@ -58,6 +62,8 @@ export const createArticleAsync = createAsyncThunk<
             if (!response.data) {
                 throw new Error();
             }
+
+            dispatch(createArticleActions.setArticleResponse(response.data));
 
             return response.data;
         } catch (e) {

@@ -9,6 +9,7 @@
 
 .blockData {
     display: flex;
+    flex-wrap: wrap;
     gap: 10px;
 }
 
@@ -44,10 +45,19 @@
     align-items: center;
 }
 
+.dropDownControll {
+    display: flex;
+    gap: 10px;
+}
+
 .blockContainer {
     width: 100%;
     display: flex;
     flex-direction: column;
+}
+
+.emptyBlockError {
+    color: red;
 }
 
 .blocks {
@@ -66,4 +76,18 @@
     height: 30px;
     stroke: var(--primary-color);
     stroke-width: 3px;
+}
+
+@media screen and (max-width: 748px) {
+    .dropDown {
+        flex-direction: column;
+    }
+    
+    .blockType {
+        margin-right: auto;
+    }
+
+    .dropDownControll {
+        margin-right: auto;
+    }
 }

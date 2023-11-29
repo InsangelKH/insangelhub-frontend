@@ -1,4 +1,4 @@
-import { ArticleType, BlockType } from 'entities/Article/model/types/article';
+import { Article, ArticleType, BlockType } from 'entities/Article/model/types/article';
 
 export interface BlocksToCreateInterface {
     id: number,
@@ -21,4 +21,6 @@ export interface CreateArticleSchema {
     image?: string;
     isLoading?: boolean;
     error?: string;
+    articleResponse?: Article;
+    emptyFieldError?: boolean;
 }

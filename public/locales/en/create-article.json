@@ -27,5 +27,12 @@
   "send article": "Create article",
   "image block": "Image section",
   "set image block": "Choose image",
-  "image": "Image:"
+  "image": "Image:",
+  "code block": "Code section:",
+  "create article error": "A server error has occured. Try to reload the page.",
+  "empty field error": "Article's title, subtitle can't be empty and there must be at least 1 article's type and section",
+  "empty block error": "Section's type must be chosen",
+  "empty blocks text error": "Make title and at least 1 paragraph",
+  "empty image block error": "Make title and choose image",
+  "empty code block error": "Fill in the code"
 }

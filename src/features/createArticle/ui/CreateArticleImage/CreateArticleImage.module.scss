@@ -29,3 +29,10 @@
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
+@media screen and (max-width: 748px) {
+    .titleCancel {
+        flex-direction: column;
+        gap: 20px;
+    }
+}

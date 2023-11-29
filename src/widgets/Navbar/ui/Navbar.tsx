@@ -31,8 +31,22 @@ export const Navbar = memo((props: NavbarProps) => {
 
     return (
         <nav className={classNames(cls.Navbar, {}, [className])}>
-            <h2 className={cls.name}>{t('InsangelHub')}</h2>
-            <h2 className={cls.nameMobile}>{t('IH')}</h2>
+            <h2>
+                <AppLink
+                    to={RoutePath.main}
+                    className={cls.name}
+                >
+                    {t('InsangelHub')}
+                </AppLink>
+            </h2>
+            <h2>
+                <AppLink
+                    to={RoutePath.main}
+                    className={cls.nameMobile}
+                >
+                    {t('IH')}
+                </AppLink>
+            </h2>
             <ThemeSwitcher />
             <LangSwithcer />
             {!authData && (

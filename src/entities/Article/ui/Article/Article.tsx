@@ -49,48 +49,54 @@ export const Article = memo((props: ArticleProps) => {
 
     if (isLoading) {
         return (
-            <ArticleIsLoading />
+            <DynamicModuleLoader reducers={initalReducers}>
+                <ArticleIsLoading />
+            </DynamicModuleLoader>
         );
     }
 
     if (error) {
         return (
-            <ArticleError />
+            <DynamicModuleLoader reducers={initalReducers}>
+                <ArticleError />
+            </DynamicModuleLoader>
         );
     }
 
     return (
         <DynamicModuleLoader reducers={initalReducers}>
-            <div className={classNames(cls.Article, {}, [className])}>
-                <div className={cls.header}>
-                    <Button
-                        className={cls.backBtn}
-                        onClick={onBack}
-                    >
-                        {t('Back')}
-                    </Button>
-                    <div className={cls.types}>
-                        {article?.type.map((type) => (
-                            <div
-                                className={cls.type}
-                                key={type}
-                            >
-                                {type}
-                            </div>
-                        ))}
+            {article && (
+                <div className={classNames(cls.Article, {}, [className])}>
+                    <div className={cls.header}>
+                        <Button
+                            className={cls.backBtn}
+                            onClick={onBack}
+                        >
+                            {t('Back')}
+                        </Button>
+                        <div className={cls.types}>
+                            {article?.type.map((type) => (
+                                <div
+                                    className={cls.type}
+                                    key={type}
+                                >
+                                    {type}
+                                </div>
+                            ))}
+                        </div>
                     </div>
+                    <ArticleTitle article={article} />
+                    {article?.blocks.map((block, index) => {
+                        if (block.type === 'TEXT') {
+                            return <ArticleTextBlock key={index} block={block} />;
+                        } if (block.type === 'IMAGE') {
+                            return <ArticleImageBlock key={index} block={block} />;
+                        } if (block.type === 'CODE') {
+                            return <ArticleCodeBlock key={index} block={block} />;
+                        } return null;
+                    })}
                 </div>
-                <ArticleTitle article={article} />
-                {article?.blocks.map((block, index) => {
-                    if (block.type === 'TEXT') {
-                        return <ArticleTextBlock key={index} block={block} />;
-                    } if (block.type === 'IMAGE') {
-                        return <ArticleImageBlock key={index} block={block} />;
-                    } if (block.type === 'CODE') {
-                        return <ArticleCodeBlock key={index} block={block} />;
-                    } return null;
-                })}
-            </div>
+            )}
         </DynamicModuleLoader>
     );
 });

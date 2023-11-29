@@ -15,6 +15,7 @@ import { createArticleActions } from '../../model/slice/createArticleSlice';
 import cls from './CreateArticleBlocks.module.scss';
 import { TextBlock } from './blocks/TextBlock/TextBlock';
 import { ImageBlock } from './blocks/ImageBlock/ImageBlock';
+import { CodeBlock } from './blocks/CodeBlock/CodeBlock';
 
 interface CreateArticleBlocksProps {
     className?: string;
@@ -29,6 +30,7 @@ export const CreateArticleBlocks = memo((props: CreateArticleBlocksProps) => {
     const dispatch = useAppDispatch();
 
     const [blockValue, setBlockValue] = useState('');
+    const [emptyBlockError, setEmptyBlockError] = useState<boolean>(false);
     const blocksData = useSelector(getCreateArticleBlocks);
     const blocksToCreate = useSelector(getCreateArticleBlocksToCreate);
 
@@ -44,12 +46,25 @@ export const CreateArticleBlocks = memo((props: CreateArticleBlocksProps) => {
                 newBlockId = maxId + 1;
             }
             dispatch(createArticleActions.setBlockToCreate({ id: newBlockId, type: 'TEXT' }));
+            setEmptyBlockError(false);
         } else if (blockValue !== '' && blockValue === 'IMAGE') {
             if (blocksToCreate?.length && blocksToCreate.length > 0) {
                 const maxId = Math.max(...blocksToCreate.map((block) => block.id));
                 newBlockId = maxId + 1;
             }
             dispatch(createArticleActions.setBlockToCreate({ id: newBlockId, type: 'IMAGE' }));
+            setEmptyBlockError(false);
+        } else if (blockValue !== '' && blockValue === 'CODE') {
+            if (blocksToCreate?.length && blocksToCreate.length > 0) {
+                const maxId = Math.max(...blocksToCreate.map((block) => block.id));
+                newBlockId = maxId + 1;
+            }
+            dispatch(createArticleActions.setBlockToCreate({ id: newBlockId, type: 'CODE' }));
+            setEmptyBlockError(false);
+        }
+
+        if (blockValue === '') {
+            setEmptyBlockError(true);
         }
     }, [blockValue, blocksToCreate, dispatch]);
 
@@ -87,17 +102,24 @@ export const CreateArticleBlocks = memo((props: CreateArticleBlocksProps) => {
                 ))}
             </div>
             <div className={cls.dropDown}>
-                <p>{t('choose block type')}</p>
-                <Dropdown
-                    defaultValue={dropDownDefaultValue}
-                    options={dropDownOptions}
-                    onChange={onDropDownChange}
-                />
-                <Button
-                    onClick={onAddBlock}
-                >
-                    {t('Create')}
-                </Button>
+                <p className={cls.blockType}>{t('choose block type')}</p>
+                <div className={cls.dropDownControll}>
+                    <Dropdown
+                        defaultValue={dropDownDefaultValue}
+                        options={dropDownOptions}
+                        onChange={onDropDownChange}
+                    />
+                    <Button
+                        onClick={onAddBlock}
+                    >
+                        {t('Create')}
+                    </Button>
+                </div>
+                {emptyBlockError && (
+                    <p className={cls.emptyBlockError}>
+                        {t('empty block error')}
+                    </p>
+                )}
             </div>
             <div className={cls.blocks}>
                 {blocksToCreate?.map((block) => (
@@ -111,6 +133,7 @@ export const CreateArticleBlocks = memo((props: CreateArticleBlocksProps) => {
                         </Button>
                         {block.type === 'TEXT' && <TextBlock id={block.id} />}
                         {block.type === 'IMAGE' && <ImageBlock id={block.id} />}
+                        {block.type === 'CODE' && <CodeBlock id={block.id} />}
                     </div>
                 ))}
             </div>

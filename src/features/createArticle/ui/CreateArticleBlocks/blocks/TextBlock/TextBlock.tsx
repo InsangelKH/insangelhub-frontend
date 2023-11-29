@@ -31,6 +31,7 @@ export const TextBlock = memo((props: TextBlockProps) => {
     const [title, setTitle] = useState<string>('');
     const [paragraph, setParagraph] = useState<string>('');
     const [paragraphs, setParagraphs] = useState<string[]>([]);
+    const [emptyError, setEmptyError] = useState<boolean>(false);
 
     const onChangeTitle = useCallback((value: string) => {
         setTitle(value);
@@ -72,13 +73,23 @@ export const TextBlock = memo((props: TextBlockProps) => {
                 newParagraphs.splice(0, newParagraphs.length);
                 return newParagraphs;
             });
+            setEmptyError(false);
             dispatch(createArticleActions.removeBlockToCreate(id));
+        }
+
+        if (title === '' || paragraphs.length === 0) {
+            setEmptyError(true);
         }
     }, [dispatch, id, paragraphs, title]);
 
     return (
         <div className={classNames(cls.TextBlock, {}, [className])}>
             <h3>{t('text block')}</h3>
+            {emptyError && (
+                <p className={cls.emptyError}>
+                    {t('empty blocks text error')}
+                </p>
+            )}
             <div className={cls.parWrapper}>
                 <p className={cls.parTitle}>{t('paragraphs')}</p>
                 <div className={cls.paragraphs}>

@@ -28,6 +28,7 @@ export const ImageBlock = memo((props: ImageBlockProps) => {
     const dispatch = useAppDispatch();
     const [title, setTitle] = useState<string>('');
     const [imageFile, setImageFile] = useState<File | null>(null);
+    const [emptyError, setEmptyError] = useState<boolean>(false);
 
     const onChangeTitle = useCallback((value: string) => {
         setTitle(value);
@@ -60,14 +61,24 @@ export const ImageBlock = memo((props: ImageBlockProps) => {
             dispatch(createArticleActions.setArticleBlock(imageBlock));
             setTitle('');
             setImageFile(null);
-            dispatch(createArticleActions.removeBlockToCreate(id));
             dispatch(createArticleActions.setFilesArray(imageFile));
+            setEmptyError(false);
+            dispatch(createArticleActions.removeBlockToCreate(id));
+        }
+
+        if (title === '' && imageFile === null) {
+            setEmptyError(true);
         }
     }, [dispatch, id, imageFile, title]);
 
     return (
         <div className={classNames(cls.ImageBlock, {}, [className])}>
             <h3>{t('image block')}</h3>
+            {emptyError && (
+                <p className={cls.emptyError}>
+                    {t('empty image block error')}
+                </p>
+            )}
             <div className={cls.blockInput}>
                 <p>{t('block title')}</p>
                 <Input

@@ -3,6 +3,8 @@ import { classNames } from 'shared/lib/classNames/classNames';
 
 interface TextAreaProps {
     className?: string;
+    rows?: number;
+    cols?: number;
     value: string;
     onChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
 }
@@ -10,6 +12,8 @@ interface TextAreaProps {
 export const TextArea = memo((props: TextAreaProps) => {
     const {
         className,
+        rows,
+        cols,
         value,
         onChange,
     } = props;
@@ -19,6 +23,8 @@ export const TextArea = memo((props: TextAreaProps) => {
             className={classNames('', {}, [className])}
             value={value}
             onChange={onChange}
+            rows={rows}
+            cols={cols}
         />
     );
 });
