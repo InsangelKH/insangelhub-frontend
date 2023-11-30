@@ -113,7 +113,13 @@ export const updateArticleSlice = createSlice({
             }
         },
         setFilesArray: (state, action: PayloadAction<File>) => {
-            state.files?.push(action.payload);
+            state.files.push(action.payload);
+        },
+        setArticleEmptyFieldError: (state, action: PayloadAction<boolean>) => {
+            state.emptyFieldError = action.payload;
+        },
+        setUpdateArticleData: (state, action: PayloadAction< {article: Article }>) => {
+            state.updatedArticle = { ...action.payload.article };
         },
     },
     extraReducers: (builder) => {

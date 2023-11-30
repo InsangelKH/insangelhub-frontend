@@ -50,7 +50,10 @@ export const CreateArticle = memo((props: CreateArticleProps) => {
     const emptyFieldError = useSelector(getCreateArticleEmptyFieldError);
 
     const onSendArticle = useCallback(() => {
-        if (title && subtitle && types && blocks && files !== undefined) {
+        if (
+            title && subtitle && types && types?.length > 0
+            && blocks && blocks.length > 0 && files !== undefined
+        ) {
             dispatch(createArticleAsync({
                 title, subtitle, image, types, blocks, files,
             }));

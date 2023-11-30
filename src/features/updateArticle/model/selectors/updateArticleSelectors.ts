@@ -13,3 +13,4 @@ export const getUpdateArticleFiles = (state: StateSchema) => state.updateArticle
 export const getUpdateArticleResponse = (state:StateSchema) => state.updateArticle?.articleResponse;
 export const getUpdateArticleEmptyFieldError = (state: StateSchema) => state.updateArticle?.emptyFieldError;
 export const getUpdateArticleEditedFlag = (state: StateSchema) => state.updateArticle?.edited;
+export const getUpdatedArticleData = (state: StateSchema) => state.updateArticle?.updatedArticle;

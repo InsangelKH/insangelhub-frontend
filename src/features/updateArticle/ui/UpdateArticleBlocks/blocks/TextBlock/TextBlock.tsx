@@ -98,6 +98,10 @@ export const TextBlock = memo((props: TextBlockProps) => {
             dispatch(updateArticleActions.setEditedBlock({ id, blockData }));
             dispatch(updateArticleActions.setEditedFlag(true));
         }
+
+        if (title === '' || paragraphs.length === 0) {
+            setEmptyError(true);
+        }
     }, [dispatch, id, paragraphs, title]);
 
     return (

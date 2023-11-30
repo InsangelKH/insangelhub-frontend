@@ -15,4 +15,5 @@ export interface UpdateArticleSchema {
     edited?: boolean;
     articleResponse?: Article;
     emptyFieldError?: boolean;
+    updatedArticle?: Article;
 }

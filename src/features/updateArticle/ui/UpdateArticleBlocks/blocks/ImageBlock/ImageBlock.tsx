@@ -84,6 +84,11 @@ export const ImageBlock = memo((props: ImageBlockProps) => {
             };
             dispatch(updateArticleActions.setEditedBlock({ id, blockData }));
             dispatch(updateArticleActions.setEditedFlag(true));
+            dispatch(updateArticleActions.setFilesArray(imageFile));
+        }
+
+        if (title === '' && imageFile === null) {
+            setEmptyError(true);
         }
     }, [dispatch, id, imageFile, title]);
 

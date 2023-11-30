@@ -61,6 +61,10 @@ export const CodeBlock = memo((props: CodeBlockProps) => {
             dispatch(updateArticleActions.setEditedBlock({ id, blockData }));
             dispatch(updateArticleActions.setEditedFlag(true));
         }
+
+        if (code === '') {
+            setEmptyError(true);
+        }
     }, [code, dispatch, id]);
 
     return (
