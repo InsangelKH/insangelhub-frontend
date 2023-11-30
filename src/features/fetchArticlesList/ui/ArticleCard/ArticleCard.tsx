@@ -7,7 +7,7 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import { Button } from 'shared/ui/Button/Button';
 import { useNavigate } from 'react-router';
 import { formattedDate } from 'shared/lib/date/date';
-import { ArticleView } from '../../model/types/articlesList';
+import { ArticleView } from '../../model/types/ArticlesListSchema';
 import cls from './ArticleCard.module.scss';
 import { ArticleListIsLoading } from '../ArticleListIsLoading/ArticleListIsLoading';
 

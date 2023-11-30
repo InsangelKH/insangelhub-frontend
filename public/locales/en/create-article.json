@@ -34,5 +34,6 @@
   "empty block error": "Section's type must be chosen",
   "empty blocks text error": "Make title and at least 1 paragraph",
   "empty image block error": "Make title and choose image",
-  "empty code block error": "Fill in the code"
+  "empty code block error": "Fill in the code",
+  "edit article": "Edit article"
 }

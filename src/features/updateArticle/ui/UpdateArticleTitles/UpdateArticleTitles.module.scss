@@ -1,0 +1,20 @@
+.UpdateArticleTitles {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    border: 2px solid var(--primary-color);
+    padding: 15px;
+}
+
+.updateInput {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.inputData {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}

@@ -1,5 +1,6 @@
 import { ArticleCreatePage } from 'pages/ArticleCreatePage';
 import { ArticleDetailsPage } from 'pages/ArticleDetailsPage';
+import { ArticleUpdatePage } from 'pages/ArticleUpdatePage';
 import { ArticlesPage } from 'pages/ArticlesPage';
 import { LoginPage } from 'pages/LoginPage';
 import { MainPage } from 'pages/MainPage';
@@ -22,6 +23,7 @@ export enum AppRoutes {
     ARTICLES = 'articles',
     ARTICLE_DETAILS = 'article_details',
     ARTICLE_CREATE = 'article_create',
+    ARTICLE_UPDATE = 'article_update',
     // last
     NOT_FOUND = 'not_found',
 }
@@ -35,6 +37,7 @@ export const RoutePath: Record<AppRoutes, string> = {
     [AppRoutes.ARTICLES]: '/articles',
     [AppRoutes.ARTICLE_DETAILS]: '/articles/',
     [AppRoutes.ARTICLE_CREATE]: 'articles/create',
+    [AppRoutes.ARTICLE_UPDATE]: 'articles/edit/',
     // last
     [AppRoutes.NOT_FOUND]: '*',
 
@@ -73,6 +76,11 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     [AppRoutes.ARTICLE_CREATE]: {
         path: RoutePath.article_create,
         element: <ArticleCreatePage />,
+        authOnly: true,
+    },
+    [AppRoutes.ARTICLE_UPDATE]: {
+        path: `${RoutePath.article_update}:slug`,
+        element: <ArticleUpdatePage />,
         authOnly: true,
     },
     // last

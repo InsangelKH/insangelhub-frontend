@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from 'app/providers/StoreProvider';
 import { Article } from 'entities/Article';
-import { CreateArticleSchema } from '../types/CreateArticle';
+import { CreateArticleSchema } from '../types/CreateArticleSchema';
 import { createArticleActions } from '../slice/createArticleSlice';
 
 type CreateArticleResponseType = Omit<CreateArticleSchema, 'blocksToCreate'>;

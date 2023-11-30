@@ -1,0 +1,16 @@
+.UpdateArticle {
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+    gap: 50px;
+}
+
+.emptyFieldError {
+    color: red;
+}
+
+.errorMessage {
+    margin-top: 100px;
+    text-align: center;
+    color: red;
+}

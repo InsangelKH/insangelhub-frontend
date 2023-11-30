@@ -8,7 +8,7 @@ import {
     getArticlesListCount, getArticlesListSearch, getArticlesListSort, getArticlesListType, getArticlesListView,
 } from '../../model/selectors/articlesListSelectors';
 import { sortArticlesList } from '../../model/services/sortArticlesList';
-import { ArticleView } from '../../model/types/articlesList';
+import { ArticleView } from '../../model/types/ArticlesListSchema';
 import cls from './ArticlePageSwitcher.module.scss';
 import { articlesListActions } from '../../model/slice/articlesListSlice';
 

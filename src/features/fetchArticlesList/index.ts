@@ -1,4 +1,4 @@
-import { ArticlesListSchema } from './model/types/articlesList';
+import { ArticlesListSchema } from './model/types/ArticlesListSchema';
 import { ArticlesList } from './ui/ArticlesList/ArticlesList';
 
 export {

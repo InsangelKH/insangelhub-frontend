@@ -1,0 +1,113 @@
+.UpdateArticleBlocks {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    border: 2px solid var(--primary-color);
+    padding: 15px;
+}
+
+.blockData {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+}
+
+.blockDataWrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+}
+
+.blockDataType {
+    display: flex;
+    gap: 10px;
+
+    border-right: 1px solid var(--primary-color);
+}
+
+.blockDataWrapper:last-of-type .blockDataType {
+    border-right: none;
+}
+
+.blockDataType {
+    display: flex;
+    gap: 10px;
+
+    border-right: 1px solid var(--primary-color);
+}
+
+.blockDataTypeValue {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.iconDelete {
+    width: 25px;
+    height: 25px;
+    stroke: var(--primary-color);
+    stroke-width: 2;
+    fill: var(--bg-color);
+    cursor: pointer;
+
+    &:hover {
+        opacity: 0.7;
+    }
+}
+
+.dropDown {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.dropDownControll {
+    display: flex;
+    gap: 10px;
+}
+
+.blockContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.emptyBlockError {
+    color: red;
+}
+
+.blocks {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.closeButton {
+    margin-left: auto;
+    display: block;
+}
+
+.icon {
+    width: 30px;
+    height: 30px;
+    stroke: var(--primary-color);
+    stroke-width: 3px;
+}
+
+@media screen and (max-width: 748px) {
+    .dropDown {
+        flex-direction: column;
+    }
+    
+    .blockType {
+        margin-right: auto;
+    }
+
+    .dropDownControll {
+        margin-right: auto;
+    }
+}

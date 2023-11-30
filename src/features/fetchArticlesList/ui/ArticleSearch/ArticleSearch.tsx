@@ -13,7 +13,7 @@ import {
 } from '../../model/selectors/articlesListSelectors';
 import { sortArticlesList } from '../../model/services/sortArticlesList';
 import { articlesListActions } from '../../model/slice/articlesListSlice';
-import { ArticleView } from '../../model/types/articlesList';
+import { ArticleView } from '../../model/types/ArticlesListSchema';
 import cls from './ArticleSearch.module.scss';
 
 interface ArticleSearchProps {

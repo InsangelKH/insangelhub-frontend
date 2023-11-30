@@ -1,11 +1,11 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import {
-    Article, ArticleType, BlockType, ImageBlock,
-} from 'entities/Article/model/types/article';
-import { BlocksToCreateInterface, CreateArticleSchema } from '../types/CreateArticleSchema';
-import { createArticleAsync } from '../services/createArticleAsync';
+import { Article } from 'entities/Article';
+import { ArticleType, BlockType, ImageBlock } from 'entities/Article/model/types/article';
+import { BlocksToCreateInterface } from 'features/createArticle/model/types/CreateArticleSchema';
+import { setUpdateArticleData } from '../services/setUpdateArticleData';
+import { UpdateArticleSchema } from '../types/UpdateArticleSchema';
 
-const initialState: CreateArticleSchema = {
+const initialState: UpdateArticleSchema = {
     title: '',
     subtitle: '',
     types: [],
@@ -14,12 +14,18 @@ const initialState: CreateArticleSchema = {
     files: [],
 };
 
-export const createArticleSlice = createSlice({
-    name: 'createArticleSlice',
+export const updateArticleSlice = createSlice({
+    name: 'updateArticleSlice',
     initialState,
     reducers: {
+        setArticleResponse: (state, action: PayloadAction< {article: Article }>) => {
+            state.articleResponse = { ...action.payload.article };
+        },
         setArticleTitle: (state, action: PayloadAction<string>) => {
             state.title = action.payload;
+        },
+        setInitialTypes: (state, action: PayloadAction<ArticleType[]>) => {
+            state.types = [...action.payload];
         },
         setArticleSubtitle: (state, action: PayloadAction<string>) => {
             state.subtitle = action.payload;
@@ -45,6 +51,9 @@ export const createArticleSlice = createSlice({
                 state.blocksToCreate.splice(index, 1);
             }
         },
+        setInitialBlocks: (state, action: PayloadAction<BlockType[]>) => {
+            state.blocks = action.payload.map((block, index) => ({ id: index + 1, blockData: block }));
+        },
         setArticleBlock: (state, action: PayloadAction<BlockType>) => {
             let index = 1;
             if (state.blocks.length > 0) {
@@ -52,6 +61,16 @@ export const createArticleSlice = createSlice({
                 index = maxId + 1;
             }
             state.blocks.push({ id: index, blockData: action.payload });
+        },
+        setEditedBlock: (state, action: PayloadAction<{ id: number, blockData: BlockType}>) => {
+            const index = state.blocks.findIndex((item) => item.id === action.payload.id);
+
+            if (index !== -1) {
+                state.blocks[index] = action.payload;
+            }
+        },
+        setEditedFlag: (state, action: PayloadAction<boolean>) => {
+            state.edited = action.payload;
         },
         removeArticleBlock: (state, action: PayloadAction<number>) => {
             const index = state.blocks.findIndex((block) => block.id === action.payload);
@@ -76,6 +95,15 @@ export const createArticleSlice = createSlice({
             state.imageFile = action.payload;
             state.files?.push(action.payload);
         },
+        setInitialArticleImage: (state, action: PayloadAction<string>) => {
+            state.image = action.payload;
+        },
+        setArticleImage: (state, action: PayloadAction<string>) => {
+            state.image = action.payload;
+        },
+        removeArticleImage: (state) => {
+            state.image = undefined;
+        },
         removeImageFile: (state) => {
             const imageFileToRemove = state.imageFile;
             state.imageFile = undefined;
@@ -87,34 +115,22 @@ export const createArticleSlice = createSlice({
         setFilesArray: (state, action: PayloadAction<File>) => {
             state.files?.push(action.payload);
         },
-        setArticleImage: (state, action: PayloadAction<string>) => {
-            state.image = action.payload;
-        },
-        removeArticleImage: (state) => {
-            state.image = undefined;
-        },
-        setArticleResponse: (state, action: PayloadAction<{ article: Article }>) => {
-            state.articleResponse = { ...action.payload.article };
-        },
-        setArticleEmptyFieldError: (state, action: PayloadAction<boolean>) => {
-            state.emptyFieldError = action.payload;
-        },
     },
     extraReducers: (builder) => {
         builder
-            .addCase(createArticleAsync.pending, (state, action) => {
+            .addCase(setUpdateArticleData.pending, (state, action) => {
                 state.error = undefined;
                 state.isLoading = true;
             })
-            .addCase(createArticleAsync.fulfilled, (state, action) => {
+            .addCase(setUpdateArticleData.fulfilled, (state, action) => {
                 state.isLoading = false;
             })
-            .addCase(createArticleAsync.rejected, (state, action) => {
+            .addCase(setUpdateArticleData.rejected, (state, action) => {
                 state.isLoading = false;
                 state.error = action.payload;
             });
     },
 });
 
-export const { actions: createArticleActions } = createArticleSlice;
-export const { reducer: createArticleReducer } = createArticleSlice;
+export const { actions: updateArticleActions } = updateArticleSlice;
+export const { reducer: updateArticleReducer } = updateArticleSlice;

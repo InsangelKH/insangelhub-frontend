@@ -5,7 +5,7 @@ import { getQueryParams } from 'shared/lib/addQueryParams/addQueryParams';
 import { userActions } from 'entities/User';
 import { articlesListActions } from '../slice/articlesListSlice';
 import { getArticlesListView } from '../selectors/articlesListSelectors';
-import { ArticleView, SortType } from '../types/articlesList';
+import { ArticleView, SortType } from '../types/ArticlesListSchema';
 
 export const fetchArticlesList = createAsyncThunk<
     {articles: Article[], articlesCount: number},

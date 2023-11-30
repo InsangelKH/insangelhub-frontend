@@ -2,7 +2,7 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { Article, ArticleType } from 'entities/Article/model/types/article';
 import { VIEW_LOCAL_STORAGE_KEY } from 'shared/consts/localstorage';
 import { addQueryParams } from 'shared/lib/addQueryParams/addQueryParams';
-import { ArticleView, ArticlesListSchema, SortType } from '../types/articlesList';
+import { ArticleView, ArticlesListSchema, SortType } from '../types/ArticlesListSchema';
 import { fetchArticlesList } from '../services/fetchArticlesList';
 import { sortArticlesList } from '../services/sortArticlesList';
 

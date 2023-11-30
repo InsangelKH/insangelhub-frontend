@@ -34,5 +34,6 @@
   "empty block error": "Тип раздела должен быть выбран",
   "empty blocks text error": "Сделайте заголовок и хотя бы один параграф",
   "empty image block error": "Сделайте заголовок и выберите изображение",
-  "empty code block error": "Заполните код"
+  "empty code block error": "Заполните код",
+  "edit article": "Редактировать статью"
 }

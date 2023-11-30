@@ -18,10 +18,8 @@ const ArticleCreatePage = memo((props: ArticleCreatePageProps) => {
 
     return (
         <Page className={classNames(cls.ArticleCreatePage, {}, [className])}>
-            <div className={cls.inputData}>
-                <h1>{t('articles create')}</h1>
-                <CreateArticle />
-            </div>
+            <h1>{t('articles create')}</h1>
+            <CreateArticle />
         </Page>
     );
 });

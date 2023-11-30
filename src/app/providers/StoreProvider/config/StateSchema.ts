@@ -9,6 +9,7 @@ import { CreateArticleSchema } from 'features/createArticle';
 import { ArticlesListSchema } from 'features/fetchArticlesList';
 import { LoginSchema } from 'features/loginByUsername';
 import { RegisterSchema } from 'features/registerUser';
+import { UpdateArticleSchema } from 'features/updateArticle';
 
 export interface StateSchema {
     user?: UserSchema
@@ -19,6 +20,7 @@ export interface StateSchema {
     article?: ArticleSchema;
     articlesList?: ArticlesListSchema;
     createArticle?: CreateArticleSchema;
+    updateArticle?: UpdateArticleSchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;

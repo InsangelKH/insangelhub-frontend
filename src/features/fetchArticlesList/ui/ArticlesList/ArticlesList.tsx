@@ -12,7 +12,7 @@ import {
 } from '../../model/selectors/articlesListSelectors';
 import { fetchArticlesList } from '../../model/services/fetchArticlesList';
 import { articlesListReducer } from '../../model/slice/articlesListSlice';
-import { ArticleView } from '../../model/types/articlesList';
+import { ArticleView } from '../../model/types/ArticlesListSchema';
 import { ArticleCard } from '../ArticleCard/ArticleCard';
 import { ArticleListButtons } from '../ArticleListButtons/ArticleListButtons';
 import { ArticleListIsLoading } from '../ArticleListIsLoading/ArticleListIsLoading';

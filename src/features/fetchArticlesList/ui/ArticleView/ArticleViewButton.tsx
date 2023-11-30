@@ -10,7 +10,7 @@ import {
     getArticlesListOffset, getArticlesListSearch, getArticlesListSort, getArticlesListType, getArticlesListView,
 } from '../../model/selectors/articlesListSelectors';
 import cls from './ArticleViewButton.module.scss';
-import { ArticleView } from '../../model/types/articlesList';
+import { ArticleView } from '../../model/types/ArticlesListSchema';
 import { sortArticlesList } from '../../model/services/sortArticlesList';
 
 interface ArticleViewProps {

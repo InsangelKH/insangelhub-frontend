@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from 'app/providers/StoreProvider';
 import { Article } from 'entities/Article/model/types/article';
 import { articlesListActions } from '../slice/articlesListSlice';
-import { SortType } from '../types/articlesList';
+import { SortType } from '../types/ArticlesListSchema';
 
 type ArticleTypeRequest = '' | 'IT' | 'ECONOMICS' | 'LIFE';
 

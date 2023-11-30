@@ -1,4 +1,4 @@
-import { CreateArticleSchema } from './model/types/CreateArticle';
+import { CreateArticleSchema } from './model/types/CreateArticleSchema';
 import { CreateArticle } from './ui/CreateArticle/CreateArticle';
 
 export {

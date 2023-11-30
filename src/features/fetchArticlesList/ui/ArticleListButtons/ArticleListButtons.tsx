@@ -14,7 +14,7 @@ import {
 } from '../../model/selectors/articlesListSelectors';
 import { ArticleViewButton } from '../ArticleView/ArticleViewButton';
 import cls from './ArticleListButtons.module.scss';
-import { ArticleView, SortType } from '../../model/types/articlesList';
+import { ArticleView, SortType } from '../../model/types/ArticlesListSchema';
 import { sortArticlesList } from '../../model/services/sortArticlesList';
 
 interface ArticleListButtonsProps {

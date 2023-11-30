@@ -1,0 +1,46 @@
+.CodeBlock {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    border-top: 1px solid var(--primary-color);
+    padding-top: 10px;
+}
+
+.emptyError {
+    color:red;
+}
+
+.codeArea {
+    min-width: 100%;
+    max-width: 100%;
+    min-height: 320px;
+    max-height: 520px;
+    padding: 5px;
+    resize: none;
+
+    background-color: transparent;
+    border: 1px solid var(--primary-color);
+
+    &:focus {
+        border: 2px solid var(--secondary-color);
+        outline: none;
+    }
+}
+
+.saveBtn {
+    margin-top: 20px;
+    width: 30%;
+    margin: 0 auto;
+}
+
+@media screen and (max-width: 748px) {
+    .saveBtn {
+        margin-top: 40px;
+        width: 70%;
+    }
+
+    .codeArea {
+        max-height: 320px;
+    }
+}
