@@ -1,26 +1,26 @@
+import { getUserData } from 'entities/User/model/selectors/userSelectors';
 import { memo, useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
+import { Navigate } from 'react-router';
+import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { DynamicModuleLoader, ReducersList } from 'shared/lib/components/DynamicModuleLoader';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDisptach';
 import { Button } from 'shared/ui/Button/Button';
-import { getUserData } from 'entities/User/model/selectors/userSelectors';
-import { Navigate } from 'react-router';
-import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 import {
     getArticle, getArticleError, getArticleIsDeleted, getArticleIsLoading,
 } from '../../model/selectors/articleSelectors';
 import { getArticleBySlug } from '../../model/services/getArticleBySlug';
 import { articleReducer } from '../../model/slice/articleSlice';
+import { ArticleCodeBlock } from '../ArticleCodeBlock/ArticleCodeBlock';
+import { ArticleControlls } from '../ArticleControlls/ArticleControlls';
+import { ArticleError } from '../ArticleError/ArticleError';
+import { ArticleImageBlock } from '../ArticleImageBlock/ArticleImageBlock';
+import { ArticleIsLoading } from '../ArticleIsLoading/ArticleIsLoading';
+import { ArticleTextBlock } from '../ArticleTextBlock/ArticleTextBlock';
 import { ArticleTitle } from '../ArticleTitle/ArticleTitle';
 import cls from './Article.module.scss';
-import { ArticleImageBlock } from '../ArticleImageBlock/ArticleImageBlock';
-import { ArticleTextBlock } from '../ArticleTextBlock/ArticleTextBlock';
-import { ArticleCodeBlock } from '../ArticleCodeBlock/ArticleCodeBlock';
-import { ArticleIsLoading } from '../ArticleIsLoading/ArticleIsLoading';
-import { ArticleError } from '../ArticleError/ArticleError';
-import { ArticleControlls } from '../ArticleControlls/ArticleControlls';
 
 interface ArticleProps {
     className?: string;

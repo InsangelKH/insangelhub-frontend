@@ -3,6 +3,7 @@ import {
 } from '@reduxjs/toolkit';
 import { AxiosInstance } from 'axios';
 import { ArticleSchema } from 'entities/Article';
+import { CommentSchema } from 'entities/Comments';
 import { ProfileSchema } from 'entities/Profile';
 import { UserSchema } from 'entities/User/model/types/user';
 import { CreateArticleSchema } from 'features/createArticle';
@@ -21,6 +22,7 @@ export interface StateSchema {
     articlesList?: ArticlesListSchema;
     createArticle?: CreateArticleSchema;
     updateArticle?: UpdateArticleSchema;
+    comments?: CommentSchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;

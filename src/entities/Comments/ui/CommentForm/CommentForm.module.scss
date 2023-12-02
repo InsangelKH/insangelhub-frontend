@@ -1,0 +1,29 @@
+.CommentForm {
+    display: flex;
+    align-items: center;
+    padding: 30px 10px;
+    border: 2px solid var(--primary-color);
+    border-radius: 15px;
+    gap: 10px;
+}
+
+.emptyError {
+    border: 2px solid red;
+}
+
+.button {
+    width: 18%;
+}
+
+@media screen and (max-width: 748px) {
+    .CommentForm {
+        flex-direction: column;
+        justify-content: center;
+        gap: 30px;
+    }
+
+    .button {
+        width: 80%;
+    }
+    
+}

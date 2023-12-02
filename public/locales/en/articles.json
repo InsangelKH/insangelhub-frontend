@@ -10,5 +10,8 @@
   "article srv error": "Server error, try to reload the page",
   "search text": "Search by articles...",
   "Delete": "Delete",
-  "Update": "Edit"
+  "Update": "Edit",
+  "type comment text": "Type comment text",
+  "send": "Send",
+  "text placeholder": "Comment..."
 }

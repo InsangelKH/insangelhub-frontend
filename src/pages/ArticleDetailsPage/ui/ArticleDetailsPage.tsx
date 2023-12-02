@@ -1,9 +1,9 @@
-import { classNames } from 'shared/lib/classNames/classNames';
-import { useTranslation } from 'react-i18next';
-import { memo } from 'react';
-import { Page } from 'shared/ui/Page/Page';
 import { Article } from 'entities/Article/ui/Article/Article';
+import { memo } from 'react';
 import { useParams } from 'react-router-dom';
+import { classNames } from 'shared/lib/classNames/classNames';
+import { Page } from 'shared/ui/Page/Page';
+import { Comments } from 'entities/Comments';
 import cls from './ArticleDetailsPage.module.scss';
 
 interface ArticleDetailsPageProps {
@@ -15,12 +15,12 @@ const ArticleDetailsPage = memo((props: ArticleDetailsPageProps) => {
         className,
     } = props;
 
-    const { t } = useTranslation();
     const { slug } = useParams<{slug: string}>();
 
     return (
         <Page className={classNames(cls.ArticleDetailsPage, {}, [className])}>
             <Article slug={slug!} />
+            <Comments slug={slug!} />
         </Page>
     );
 });

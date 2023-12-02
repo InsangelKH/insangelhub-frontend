@@ -1,3 +1,4 @@
+import { CommentSchema } from 'entities/Comments';
 import { User } from 'entities/User';
 
 export type ArticleType = 'ALL' | 'IT' | 'ECONOMICS' | 'LIFE';
