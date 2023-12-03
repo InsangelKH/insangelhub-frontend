@@ -11,12 +11,14 @@ import cls from './ArticleControlls.module.scss';
 interface ArticleControllsProps {
     className?: string;
     slug: string,
+    isLoading?: boolean;
 }
 
 export const ArticleControlls = memo((props: ArticleControllsProps) => {
     const {
         className,
         slug,
+        isLoading,
     } = props;
 
     const { t } = useTranslation('articles');
@@ -37,6 +39,7 @@ export const ArticleControlls = memo((props: ArticleControllsProps) => {
                 theme={ButtonTheme.DANGER}
                 className={cls.deleteBtn}
                 onClick={onDelete}
+                disabled={isLoading}
             >
                 {t('Delete')}
             </Button>
@@ -44,6 +47,7 @@ export const ArticleControlls = memo((props: ArticleControllsProps) => {
                 theme={ButtonTheme.BACKGROUND_INVERTED}
                 className={cls.updateBtn}
                 onClick={onEdit}
+                disabled={isLoading}
             >
                 {t('Update')}
             </Button>

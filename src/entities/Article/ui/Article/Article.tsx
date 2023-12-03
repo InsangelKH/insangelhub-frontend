@@ -104,7 +104,7 @@ export const Article = memo((props: ArticleProps) => {
                         </div>
                     </div>
                     <ArticleTitle article={article} />
-                    {allowedToEdit && <ArticleControlls slug={slug} />}
+                    {allowedToEdit && <ArticleControlls slug={slug} isLoading={isLoading} />}
                     {article?.blocks.map((block, index) => {
                         if (block.type === 'TEXT') {
                             return <ArticleTextBlock key={index} block={block} />;

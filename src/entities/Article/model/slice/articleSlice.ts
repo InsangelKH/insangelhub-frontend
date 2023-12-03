@@ -1,6 +1,7 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { Article, ArticleSchema } from '../types/article';
 import { getArticleBySlug } from '../services/getArticleBySlug';
+import { deleteArticleBySlug } from '../services/deleteArticleBySlug';
 
 const initialState: ArticleSchema = {};
 
@@ -25,6 +26,17 @@ export const articleSlice = createSlice({
                 state.isLoading = false;
             })
             .addCase(getArticleBySlug.rejected, (state, action) => {
+                state.isLoading = false;
+                state.error = action.payload;
+            })
+            .addCase(deleteArticleBySlug.pending, (state, action) => {
+                state.error = undefined;
+                state.isLoading = true;
+            })
+            .addCase(deleteArticleBySlug.fulfilled, (state, action) => {
+                state.isLoading = false;
+            })
+            .addCase(deleteArticleBySlug.rejected, (state, action) => {
                 state.isLoading = false;
                 state.error = action.payload;
             });
