@@ -2,6 +2,8 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { Comment, CommentSchema } from '../types/CommentSchema';
 import { leaveArticleComment } from '../services/leaveArticleComment';
 import { getCommentListAsync } from '../services/getCommentsListAsync';
+import { deleteCommentById } from '../services/deleteCommentById';
+import { updateCommentById } from '../services/updateCommentById';
 
 const initialState: CommentSchema = {};
 
@@ -29,14 +31,15 @@ export const commentSlice = createSlice({
                 state.isLoading = false;
                 state.error = action.payload;
             })
-            .addCase(leaveArticleComment.pending, (state, action) => {
-                state.error = undefined;
-                state.isLoading = true;
-            })
-            .addCase(leaveArticleComment.fulfilled, (state, action) => {
-                state.isLoading = false;
-            })
             .addCase(leaveArticleComment.rejected, (state, action) => {
+                state.isLoading = false;
+                state.error = action.payload;
+            })
+            .addCase(deleteCommentById.rejected, (state, action) => {
+                state.isLoading = false;
+                state.error = action.payload;
+            })
+            .addCase(updateCommentById.rejected, (state, action) => {
                 state.isLoading = false;
                 state.error = action.payload;
             });

@@ -12,5 +12,7 @@
   "Update": "Редактировать",
   "send": "Отправить",
   "type comment text": "Введите текст комментария",
-  "text placeholder": "Комментарий..."
+  "text placeholder": "Комментарий...",
+  "cancel comment edit": "Отменить",
+  "approve comment edit": "Отправить"
 }

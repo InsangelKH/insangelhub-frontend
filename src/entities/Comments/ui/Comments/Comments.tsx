@@ -9,8 +9,10 @@ import { commentActions, commentReducer } from '../../model/slice/commentSlice';
 import { getCommentListAsync } from '../../model/services/getCommentsListAsync';
 import { CommentForm } from '../CommentForm/CommentForm';
 import cls from './Comments.module.scss';
-import { getCommentList, getCommentText } from '../../model/selectors/commentSelectors';
+import { getCommentIsLoading, getCommentList, getCommentText } from '../../model/selectors/commentSelectors';
 import { CommentCard } from '../CommentCard/CommentCard';
+import { CommentFormSkeleton } from '../CommentSkeletons/CommentFormSkeleton';
+import { CommentCardSkeleton } from '../CommentSkeletons/CommentCardSkeleton';
 
 interface CommentsProps {
     className?: string;
@@ -31,6 +33,7 @@ export const Comments = memo((props: CommentsProps) => {
 
     const commentList = useSelector(getCommentList);
     const commentText = useSelector(getCommentText);
+    const isLoading = useSelector(getCommentIsLoading);
     const articleError = useSelector(getArticleError);
 
     const onSendComment = useCallback(() => {
@@ -51,8 +54,10 @@ export const Comments = memo((props: CommentsProps) => {
     return (
         <DynamicModuleLoader reducers={initialReducers}>
             <div className={classNames(cls.Comments, {}, [className])}>
-                <CommentForm onSend={onSendComment} />
-                {commentList?.map((comment, index) => (
+                {isLoading && <CommentFormSkeleton />}
+                {!isLoading && <CommentForm onSend={onSendComment} />}
+                {isLoading && <CommentCardSkeleton />}
+                {!isLoading && commentList?.map((comment, index) => (
                     <CommentCard
                         key={index}
                         id={comment.id}
@@ -60,6 +65,7 @@ export const Comments = memo((props: CommentsProps) => {
                         author={comment.author.username}
                         avatar={comment.author.image}
                         comment={comment.text}
+                        slug={slug}
                     />
                 ))}
             </div>
