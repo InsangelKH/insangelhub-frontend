@@ -5,13 +5,13 @@ import { PageLoader } from 'shared/ui/PageLoader/PageLoader';
 import { RequireAuth } from './RequireAuth';
 
 const AppRouter = () => {
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     const renderWithWrapper = useCallback((route: AppRoutesProps) => {
         const element = (
             <Suspense fallback={<PageLoader />}>
                 {route.element}
             </Suspense>
         );
+
         return (
             <Route
                 key={route.path}

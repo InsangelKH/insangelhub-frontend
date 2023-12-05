@@ -1,0 +1,28 @@
+.ResumeEditPage {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.langBtns {
+    display: flex;
+    gap: 20px;
+}
+
+.btn {
+    cursor: pointer;
+    padding: 5px 10px;
+    border: 2px solid var(--primary-color);
+    border-radius: 15px;
+}
+
+.resumeField {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.textArea {
+    max-width: 100%;
+    min-width: 100%;
+}

@@ -7,6 +7,7 @@ import { MainPage } from 'pages/MainPage';
 import { NotFoundPage } from 'pages/NotFoundPage';
 import { ProfilePage } from 'pages/ProfilePage';
 import { RegisterPage } from 'pages/RegisterPage';
+import { ResumeEditPage } from 'pages/ResumeEditPage';
 import { ResumePage } from 'pages/ResumePage';
 import { RouteProps } from 'react-router';
 
@@ -17,6 +18,7 @@ export type AppRoutesProps = RouteProps & {
 export enum AppRoutes {
     MAIN = 'main',
     RESUME = 'resume',
+    RESUME_UPDATE = 'resume_update',
     LOGIN = 'login',
     PROFILE = 'profile',
     REGISTER = 'register',
@@ -31,6 +33,7 @@ export enum AppRoutes {
 export const RoutePath: Record<AppRoutes, string> = {
     [AppRoutes.MAIN]: '/',
     [AppRoutes.RESUME]: '/resume',
+    [AppRoutes.RESUME_UPDATE]: '/resume/update',
     [AppRoutes.LOGIN]: '/login',
     [AppRoutes.PROFILE]: '/profile/',
     [AppRoutes.REGISTER]: '/register',
@@ -51,6 +54,11 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     [AppRoutes.RESUME]: {
         path: RoutePath.resume,
         element: <ResumePage />,
+    },
+    [AppRoutes.RESUME_UPDATE]: {
+        path: RoutePath.resume_update,
+        element: <ResumeEditPage />,
+        authOnly: true,
     },
     [AppRoutes.LOGIN]: {
         path: RoutePath.login,
