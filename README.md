@@ -1,10 +1,7 @@
 ## Launch project
 
-...
-npm install - installation of dependencies
-npm run start - launch in develepoment mode
-...
-
+- `npm install` - Installation of dependencies
+- `npm run start` - Launch in develepoment mode
 
 ----
 
