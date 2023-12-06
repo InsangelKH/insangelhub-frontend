@@ -30,7 +30,7 @@ export const Navbar = memo((props: NavbarProps) => {
     }, [dispatch]);
 
     return (
-        <nav className={classNames(cls.Navbar, {}, [className])}>
+        <header className={classNames(cls.Navbar, {}, [className])}>
             <h2>
                 <AppLink
                     to={RoutePath.main}
@@ -67,6 +67,6 @@ export const Navbar = memo((props: NavbarProps) => {
                     <h3>{t('logout')}</h3>
                 </Button>
             )}
-        </nav>
+        </header>
     );
 });

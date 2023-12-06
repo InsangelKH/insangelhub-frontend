@@ -1,27 +1,91 @@
 .MainPage {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 60px;
+}
+
+.welcomeMessage {
+    text-align: center;
+    margin-bottom: 20px;
 }
 
 .title {
-    text-align: center;
-    margin-bottom: 30px;
+    font-size: var(--font-size-l);
+    font-weight: bold;
 }
 
-.reason {
+.aboutMeField {
+    display: flex;
+    gap: 30px;
+}
+
+.pictureField {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 15px;
+    border: 2px solid var(--primary-color);
+    border-radius: 15px;
+    max-width: max-content;
+}
+
+.mePicture {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+.littleMeDesc {
     text-align: center;
 }
 
-.list {
-    text-align: center;
+.aboutMeText {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    font-size: var(--font-size-l);
 }
 
-li {
-    margin-top: 5px;
+.aboutAppField {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    font-size: var(--font-size-l);
 }
 
-.basedOn {
-    margin-top: 30px;
-    text-align: center;
+.link {
+    margin-left: 10px;
+    font-weight: bold;
+    text-decoration: underline;
 }
+
+.linkIsnide {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.icon {
+    width: 30px;
+    height: 30px;
+    fill: var(--primary-color);
+    stroke: var(--primary-color);
+    stroke-width: 2;
+}
+
+.iconArtilce {
+    width: 30px;
+    height: 30px;
+    fill: var(--primary-color);
+    stroke: var(--primary-color);
+    stroke-width: 1;
+}
+
+.iconCreate {
+    stroke: var(--primary-color);
+    width: 30px;
+    height: 30px;
+}
+
+
+   
