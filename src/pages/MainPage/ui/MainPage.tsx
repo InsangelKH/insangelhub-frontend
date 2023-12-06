@@ -114,7 +114,7 @@ const MainPage = memo((props: MainPageProps) => {
                 <p>
                     {t('look article')}
                     <AppLink
-                        to={RoutePath.resume}
+                        to={RoutePath.articles}
                         className={cls.linkIsnide}
                     >
                         {t('link for resume')}
@@ -129,7 +129,7 @@ const MainPage = memo((props: MainPageProps) => {
                 <p>
                     {t('furthermore create article')}
                     <AppLink
-                        to={RoutePath.resume}
+                        to={RoutePath.article_create}
                         className={cls.linkIsnide}
                     >
                         {t('link for resume')}
