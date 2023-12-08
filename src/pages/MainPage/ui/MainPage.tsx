@@ -27,7 +27,7 @@ const MainPage = memo((props: MainPageProps) => {
 
     return (
         <Page className={classNames(cls.MainPage, {}, [className])}>
-            <h1 className={cls.welcomeMessage}>{t('welcome to insangelhub')}</h1>
+            <p className={cls.welcomeMessage}>{t('welcome to insangelhub')}</p>
             <p className={cls.title}>
                 {t('welcome message')}
             </p>
