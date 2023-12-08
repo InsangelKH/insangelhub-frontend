@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { memo, useCallback } from 'react';
 import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
 import { Button } from 'shared/ui/Button/Button';
-import cls from './ArticleIsLoading.module.scss';
+import cls from './ArticleIsloading.module.scss';
 
 interface ArticleIsLoadingProps {
     className?: string;
