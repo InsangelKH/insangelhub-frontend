@@ -120,7 +120,6 @@ export const CommentCard = memo((props: CommentCardProps) => {
                     onChange={onChangeComment}
                     readonly={readonly}
                     className={classNames('', {
-                        [cls.readonly]: readonly,
                         [cls.emptyError]: emptyError,
                     }, [])}
                 />

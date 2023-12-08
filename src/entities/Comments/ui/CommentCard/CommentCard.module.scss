@@ -61,14 +61,6 @@
     gap: 10px;
 }
 
-.readonly {
-    border: none;
-}
-
-.emptyError{
-    border: 2px solid red;
-}
-
 @media screen and (max-width: 748px) {
     .commentSection {
         flex-direction: column;

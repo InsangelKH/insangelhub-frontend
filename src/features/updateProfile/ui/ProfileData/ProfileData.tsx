@@ -76,12 +76,10 @@ export const ProfileData = memo((props: ProfileDataProps) => {
                     <>
                         {emptyField && !isUsernameValid(username) && <p className={cls.error}>{t('username error')}</p>}
                         <Input
-                            className={classNames(cls.input, {
-                                [cls.profileFieldValue]: readonly,
-                                [cls.inputError]: emptyField && username === '',
-                            }, [className])}
+                            className={classNames(cls.input, {}, [className])}
                             value={username}
                             readonly={readonly}
+                            emptyError={emptyField && username === ''}
                             onChange={onChangeUsername}
                         />
                     </>
@@ -94,10 +92,7 @@ export const ProfileData = memo((props: ProfileDataProps) => {
                     <>
                         {emptyField && bio === '' && <p className={cls.error}>{t('bio error')}</p>}
                         <Input
-                            className={classNames(cls.input, {
-                                [cls.profileFieldValue]: readonly,
-                                [cls.inputError]: emptyField && bio === '',
-                            }, [className])}
+                            className={classNames(cls.input, {}, [className])}
                             value={bio}
                             readonly={readonly}
                             onChange={onChangeBio}

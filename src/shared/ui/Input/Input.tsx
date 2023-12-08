@@ -16,6 +16,7 @@ interface InputProps extends HTMLInputProps{
     readonly?: boolean;
     theme?: InputTheme;
     placeholder?: string;
+    emptyError?: boolean;
 }
 
 export const Input = memo((props: InputProps) => {
@@ -27,6 +28,7 @@ export const Input = memo((props: InputProps) => {
         type = 'text',
         theme = InputTheme.DEFAULT,
         placeholder,
+        emptyError,
         ...otherProps
     } = props;
 
@@ -36,7 +38,10 @@ export const Input = memo((props: InputProps) => {
 
     return (
         <input
-            className={classNames(cls.Input, { [cls.readonly]: readonly }, [className, cls[theme]])}
+            className={classNames(cls.Input, {
+                [cls.readonly]: readonly,
+                [cls.emptyError]: emptyError,
+            }, [className, cls[theme]])}
             value={value}
             type={type}
             onChange={onChangeHandler}
