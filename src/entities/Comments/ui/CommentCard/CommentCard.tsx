@@ -42,9 +42,6 @@ export const CommentCard = memo((props: CommentCardProps) => {
     const [commentText, setCommentText] = useState<string>(comment);
     const [emptyError, setEmptyError] = useState<boolean>(false);
 
-    console.log('readonly:', readonly);
-    console.log('emptyError:', emptyError);
-
     const user = useSelector(getUserData);
     const allowedToEdit = user?.role === 'ADMIN' || user?.id === authorId;
 

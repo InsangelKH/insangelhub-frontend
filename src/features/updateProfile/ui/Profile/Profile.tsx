@@ -1,4 +1,4 @@
-import { memo, useEffect } from 'react';
+import { memo, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { SERVER_URL } from 'shared/api/api';
 import { classNames } from 'shared/lib/classNames/classNames';
@@ -74,12 +74,14 @@ export const Profile = memo((props: ProfileProps) => {
         <DynamicModuleLoader reducers={initalReducers}>
             <ProfileHeader />
             <div className={classNames(cls.Profile, {}, [className])}>
-                <ProfileAvatar
-                    readonly={readonly}
-                    avatar={avatar}
-                    imageFile={imageFile}
-                    imageSrc={imageSrc}
-                />
+                {profile?.image !== undefined && (
+                    <ProfileAvatar
+                        readonly={readonly}
+                        avatar={avatar}
+                        imageFile={imageFile}
+                        imageSrc={imageSrc}
+                    />
+                )}
                 <ProfileData readonly={readonly} />
             </div>
         </DynamicModuleLoader>
