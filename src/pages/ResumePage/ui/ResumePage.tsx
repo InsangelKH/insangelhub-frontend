@@ -104,7 +104,7 @@ const ResumePage = memo((props: ResumePageProps) => {
                     {t('skills')}
                 </p>
                 <p className={cls.resumeFieldValue}>
-                    {resumeData?.skills.join(', ')}
+                    {resumeData?.skills?.join(', ')}
                 </p>
             </div>
             <div className={cls.resumeField}>
@@ -112,7 +112,7 @@ const ResumePage = memo((props: ResumePageProps) => {
                     {t('languages')}
                 </p>
                 <p className={cls.resumeFieldValue}>
-                    {resumeData?.languages.join(', ')}
+                    {resumeData?.languages?.join(', ')}
                 </p>
             </div>
             {user?.role === 'ADMIN'
