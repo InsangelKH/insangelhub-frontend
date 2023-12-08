@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { USER_LOCAL_STORAGE_KEY } from 'shared/consts/localstorage';
 
-export const SERVER_URL = 'http://localhost:3000';
+export const SERVER_URL = 'https://insangelhub-89ed907960d2.herokuapp.com';
 
 export const $api = axios.create({
     baseURL: SERVER_URL,
