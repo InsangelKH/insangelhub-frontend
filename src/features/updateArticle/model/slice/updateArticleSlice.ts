@@ -4,6 +4,7 @@ import { ArticleType, BlockType, ImageBlock } from 'entities/Article/model/types
 import { BlocksToCreateInterface } from 'features/createArticle/model/types/CreateArticleSchema';
 import { setUpdateArticleData } from '../services/setUpdateArticleData';
 import { UpdateArticleSchema } from '../types/UpdateArticleSchema';
+import { updateArticleAsync } from '../services/updateArticleAsync';
 
 const initialState: UpdateArticleSchema = {
     title: '',
@@ -124,14 +125,14 @@ export const updateArticleSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
-            .addCase(setUpdateArticleData.pending, (state, action) => {
+            .addCase(updateArticleAsync.pending, (state, action) => {
                 state.error = undefined;
                 state.isLoading = true;
             })
-            .addCase(setUpdateArticleData.fulfilled, (state, action) => {
+            .addCase(updateArticleAsync.fulfilled, (state, action) => {
                 state.isLoading = false;
             })
-            .addCase(setUpdateArticleData.rejected, (state, action) => {
+            .addCase(updateArticleAsync.rejected, (state, action) => {
                 state.isLoading = false;
                 state.error = action.payload;
             });

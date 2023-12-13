@@ -108,14 +108,16 @@ export const UpdateArticle = memo((props: UpdateArticleProps) => {
                 <UpdateArticleTypes />
                 <UpdateArticleBlocks />
                 <UpdateArticleImage />
-                <Button
-                    theme={ButtonTheme.BACKGROUND_INVERTED}
-                    onClick={onSendArticle}
-                    disabled={isLoading}
-                >
-                    {t('edit article')}
+                {!isLoading && (
+                    <Button
+                        theme={ButtonTheme.BACKGROUND_INVERTED}
+                        onClick={onSendArticle}
+                        disabled={isLoading}
+                    >
+                        {t('edit article')}
 
-                </Button>
+                    </Button>
+                )}
             </div>
         </DynamicModuleLoader>
     );
