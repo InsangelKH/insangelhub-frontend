@@ -51,7 +51,7 @@ const MainPage = memo((props: MainPageProps) => {
                     {t('app based on')}
                     {t('github info')}
                 </p>
-                <h1>{t('WARNINGNOIMAGES')}</h1>
+                <p className={cls.title}>{t('WARNINGNOIMAGES')}</p>
                 <p>
                     {t('Frontend part')}
                     <AppLink
