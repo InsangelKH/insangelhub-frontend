@@ -37,5 +37,6 @@
   "and choose article to read": " in sidebar and find article to read. You can change list's view (SMALL, BIG), sort articles by tags, search articles, change direction (ASC, DESC). Also you can comment article. If you don't like your comment you can either delete it or edit it.",
   "looks like icon article": " with icon that looks like this ",
   "furthermore create article": "Furthermore, you can create your own articles by clicking this ",
-  "delete or edit article": " in sidebar. If you don’t like your article you can either delete it or edit it. But to create an article you have to be logged in."
+  "delete or edit article": " in sidebar. If you don’t like your article you can either delete it or edit it. But to create an article you have to be logged in.",
+  "WARNINGNOIMAGES": "WARNING: Do not create/edit articles or your profile uploading pictures. I changed hosting from Heroku to Vercel and it does not provide opportunity to upload images. For now I can't afford AWS S3, Google Cloud Storage or something else."
 }
